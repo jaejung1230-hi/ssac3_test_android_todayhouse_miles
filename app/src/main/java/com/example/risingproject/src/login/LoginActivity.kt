@@ -5,6 +5,8 @@ import android.graphics.Paint
 import android.os.Bundle
 import com.example.risingproject.config.BaseActivity
 import com.example.risingproject.databinding.ActivityLoginBinding
+import com.example.risingproject.src.main.MainActivity
+import com.example.risingproject.src.recommendinfo.CustomRecommendInfoActivity
 import com.example.risingproject.src.signup.SignupOneActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
@@ -17,6 +19,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
         binding.tvSignupEmail.setOnClickListener {
             val intent  = Intent(this, SignupOneActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvSigninEmail.setOnClickListener {
+            val intent  = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

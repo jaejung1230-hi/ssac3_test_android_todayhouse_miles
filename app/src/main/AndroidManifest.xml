@@ -39,6 +39,12 @@
             android:screenOrientation="portrait"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".src.recommendinfo.CustomRecommendInfoActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

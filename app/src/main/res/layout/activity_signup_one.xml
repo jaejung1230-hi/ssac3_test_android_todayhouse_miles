@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,14 +28,23 @@
 
     <androidx.core.widget.NestedScrollView
         app:layout_constraintTop_toBottomOf="@+id/toolbar_signup"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
 
         <LinearLayout
             android:paddingHorizontal="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_14"
+                android:layout_marginVertical="10dp"
+                android:textAlignment="viewEnd"
+                android:text="인테리어 전문가이시다면 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/linear_email"
@@ -43,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:inputType="textEmailAddress"
                     android:id="@+id/edit_email"
                     android:padding="10dp"
                     android:background="@null"
@@ -58,6 +69,7 @@
                     android:textColor="@color/redForText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
             <TextView
@@ -75,13 +87,14 @@
                 android:layout_height="wrap_content"/>
 
             <LinearLayout
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/linear_password"
                 android:background="@drawable/gray_stroke_textview"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:inputType="textPassword"
                     android:id="@+id/edit_password"
                     android:padding="10dp"
                     android:background="@null"
@@ -106,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:inputType="textPassword"
                     android:id="@+id/edit_password_check"
                     android:padding="10dp"
                     android:background="@null"
@@ -123,9 +137,304 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:paddingBottom="5dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/linear_nickname"
+                android:background="@drawable/gray_stroke_textview"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:maxLength="15"
+                    android:id="@+id/edit_nickname"
+                    android:padding="10dp"
+                    android:background="@null"
+                    android:hint="별명(중복불가)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_nickname_warning"
+                    android:paddingStart="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone"
+                    android:text="별명을 2 - 15자 내로 입력해주세요."
+                    android:textColor="@color/redForText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/top_boarder"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:id="@+id/tv_recommend_nickname"
+
+                        android:text="닉네임"
+                        android:textStyle="bold"
+                        android:textColor="@color/main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_recommend_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이 별명은 어떠신가요?"/>
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@+id/tv_recommend_nickname"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="별명은 언제든지 수정하실 수 있습니다."/>
+                    <Button
+                        android:id="@+id/btn_nickname_use"
+                        android:backgroundTint="@color/main"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용하기"
+                        android:textSize="16dp"
+                        android:textStyle="bold"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_checkbox"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/gray_stroke_textview"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/bottom_boarder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="약관 동의"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/checkbox_all"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="전체 동의"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_all"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_signin_temp1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="만 14세 이상입니다."/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_signin_temp1"
+                        android:textColor="@color/main"
+                        android:textSize="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" (필수)"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_age"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_signin_temp2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="이용약관"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_signin_temp2"
+                        android:textColor="@color/main"
+                        android:textSize="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" (필수)"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_promise"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_signin_temp3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="개인정보수집 및 이용동의"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_signin_temp3"
+                        android:textColor="@color/main"
+                        android:textSize="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" (필수)"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_profile"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_signin_temp4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="특가, 쿠폰등 이벤트 알람 이메일, 문자"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_signin_temp4"
+                        android:textColor="@color/softGray"
+                        android:textSize="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" (선택)"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_alarm"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_checkbox_warning"
+                android:paddingStart="10dp"
+                android:paddingBottom="10dp"
+                android:visibility="gone"
+                android:text="이용약관, 개인정보처리방침에 동의해주세요"
+                android:textColor="@color/redForText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="친구에게 추천받고 오셨나요?(선택 사항)"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/gray_stroke_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/edit_recommender"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_recommender"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@null"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="추천인 코드"/>
+
+                <Button
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/btn_recommender"
+                    android:backgroundTint="@color/main"
+                    android:text="확인"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/btn_signup"
+                android:backgroundTint="@color/main"
+                android:text="회원가입 완료"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

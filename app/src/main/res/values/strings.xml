@@ -4,6 +4,9 @@
     <!-- 도메인명_컴포넌트함축어_용도(=목적) -->
 
     <!-- Common -->
+    <string name="appbar_scrolling_view_behavior" translatable="false">
+        com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
+    </string>
 
     <!-- Main -->
     <string name="main_btm_nav_home_title">홈</string>
@@ -22,5 +25,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="login_text">지금 가입하면 <b>최대 10만원</b>\n쿠폰 증정!</string>
+
 
 </resources>
