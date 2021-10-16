@@ -4,7 +4,7 @@
 
 API가 없고 개발 가능시간도 짧았기 때문에 레이아웃 중심으로 구현하였다.
 
-<img src="https://github.com/mock-ssac3/ssac3_test_android_todayhouse_miles/issues/1#issue-1027471851">
+![initial]<img src="https://github.com/mock-ssac3/ssac3_test_android_todayhouse_miles/issues/1#issue-1027471851">
 스플래시 화면은 별도의 액티비티를 이용하여 구현하였다. 
 setTheme로 구현하는 것이 옳은 방식이라고는 하나 splash에서 로그인의 jwt토큰을 확인하기 위해 별도의 액티비티로 구현하는 것이 좋을 것이라고 판단하였다.
 
