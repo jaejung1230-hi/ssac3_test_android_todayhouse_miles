@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
-import com.example.risingproject.databinding.FragmentStoreBinding
 import com.example.risingproject.databinding.FragmentStoreHomeBinding
 import com.example.risingproject.src.main.store.storehome.models.temp
 import com.example.risingproject.src.main.store.storehome.util.AdsViewPagerAdapter
 import com.example.risingproject.src.main.store.storehome.util.StoreHomeCategoryGridViewAdapter
-import com.example.risingproject.src.main.store.util.StoreFragmentViewPagerAdapter
-import com.google.android.material.tabs.TabLayoutMediator
+
 
 class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHomeBinding::bind, R.layout.fragment_store_home) {
 
@@ -64,9 +61,11 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
             })
         }
 
-        binding.gridviewStorehomeCategory.adapter = StoreHomeCategoryGridViewAdapter(requireContext(),storeArr)
+        binding.gridviewStorehomeCategory.adapter = StoreHomeCategoryGridViewAdapter(requireContext(),this,storeArr)
         binding.gridviewStorehomeCategory.isExpanded = true
     }
+
+
 
     private fun autoScrollStart(intervalTime: Long) {
         myHandler.removeMessages(0) // 이거 안하면 핸들러가 1개, 2개, 3개 ... n개 만큼 계속 늘어남

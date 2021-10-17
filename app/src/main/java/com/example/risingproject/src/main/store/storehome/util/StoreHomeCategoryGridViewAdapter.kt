@@ -1,17 +1,23 @@
 package com.example.risingproject.src.main.store.storehome.util
 
 import android.content.Context
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.risingproject.R
+import com.example.risingproject.src.main.home.HomeFragment
+import com.example.risingproject.src.main.store.storehome.StoreCategoryFragment
+import com.example.risingproject.src.main.store.storehome.StoreHomeFragemt
 import com.example.risingproject.src.main.store.storehome.models.temp
 
-class StoreHomeCategoryGridViewAdapter(private var context: Context, val items : List<temp>): BaseAdapter() {
+class StoreHomeCategoryGridViewAdapter(private var context: Context, val fragemt: StoreHomeFragemt, val items: List<temp>): BaseAdapter() {
     override fun getCount(): Int = items.size
 
     override fun getItem(p0: Int): Any = items[p0]
@@ -30,6 +36,18 @@ class StoreHomeCategoryGridViewAdapter(private var context: Context, val items :
         img.setImageResource(item.img)
         name.text = item.name
         subcategory.text = item.sub
+
+        view.setOnClickListener {
+            val storeCategoryFragment: Fragment = StoreCategoryFragment()
+            val fragmentManager: FragmentManager? = fragemt.fragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+            val bundle : Bundle = Bundle()
+            bundle.putString("category", item.name)
+            storeCategoryFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.main_frm, storeCategoryFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
         return view
     }
