@@ -9,10 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
-    val API_URL = "https://members.softsquared.com/"
+    //val API_URL = "https://members.softsquared.com/"
 
     // 테스트 서버 주소
-    // val API_URL = "http://dev-api.test.com/"
+    val API_URL = "https://dev.senya.today/app/"
 
     // 실 서버 주소
     // val API_URL = "http://api.test.com/"
@@ -32,8 +32,7 @@ class ApplicationClass : Application() {
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성합니다.
     override fun onCreate() {
         super.onCreate()
-        sSharedPreferences =
-            applicationContext.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
+        sSharedPreferences = applicationContext.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
     }

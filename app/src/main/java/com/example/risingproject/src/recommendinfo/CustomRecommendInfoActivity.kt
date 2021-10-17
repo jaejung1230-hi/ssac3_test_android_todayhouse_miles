@@ -19,10 +19,6 @@ import android.widget.AdapterView
 
 import android.widget.ArrayAdapter
 
-
-
-
-
 class CustomRecommendInfoActivity: BaseActivity<ActivityCustomRecommendInfoBinding>(ActivityCustomRecommendInfoBinding::inflate) {
     var flag_page2_yet = true
     var flag_page3_yet = true

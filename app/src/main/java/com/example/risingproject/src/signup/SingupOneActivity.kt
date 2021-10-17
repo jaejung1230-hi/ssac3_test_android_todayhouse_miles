@@ -1,6 +1,7 @@
 package com.example.risingproject.src.signup
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
@@ -8,21 +9,26 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.widget.CheckBox
 import android.widget.CompoundButton
-import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import com.example.risingproject.R
+import com.example.risingproject.config.ApplicationClass
 import com.example.risingproject.config.BaseActivity
+import com.example.risingproject.config.BaseResponse
 import com.example.risingproject.databinding.ActivitySignupOneBinding
+import com.example.risingproject.src.signup.models.GetSignInRequest
+import com.example.risingproject.src.signup.models.GetSignInResponse
+import com.example.risingproject.src.signup.models.PostSignUpRequest
 import java.util.regex.Pattern
+import android.content.SharedPreferences
+import android.util.Log
+import com.example.risingproject.src.main.MainActivity
 
 
-class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupOneBinding::inflate) {
-
+class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupOneBinding::inflate), SignupOneActivityView {
+    val module_exports = "/^([\\w_\\.\\-\\+])+\\@([\\w\\-]+\\.)+([\\w]{2,10})+\$/;"
     val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-    val pwdValidation = "^[a-zA-Z0-9!@.#$%^&*?_~]{8,}$"
+    var pwdValidation = "^(?=.*[A-Za-z])(?=.*[0-9]).{8,15}\$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,8 +127,17 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
             val flag4 = checkNickName()
             val flag5= checkCheckBox()
             if(flag1 && flag2 && flag3 && flag4 && flag5){
-                showCustomToast("로그인 성공")
-                //API연동
+                //val intent = Intent(this, CustomRecommendInfoActivity::class.java)
+                //startActivity(intent)
+                val postRequest = PostSignUpRequest(binding.editEmail.text.toString(),
+                    binding.editPassword.text.toString(),
+                    binding.editNickname.text.toString(),
+                    "Y",
+                    "Y",
+                    "Y",
+                    transCheckedToXY(binding.checkboxAlarm.isChecked))
+                showLoadingDialog(this)
+                SignupOneService(this).tryPostSignUp(postRequest)
             }else{
             }
         }
@@ -211,5 +226,44 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
             binding.tvCheckboxWarning.visibility = View.VISIBLE
             return false
         }
+    }
+
+    fun transCheckedToXY(checked: Boolean) : String {
+        if(checked){
+            return "Y"
+        }else{
+            return "N"
+        }
+    }
+
+    override fun onPostSignUpSuccess(response: BaseResponse) {
+        response.message?.let { showCustomToast(it) }
+
+        val getSignInRequest = GetSignInRequest(binding.editEmail.text.toString(),
+            binding.editPassword.text.toString())
+        SignupOneService(this).tryGetSignIn(getSignInRequest)
+    }
+
+    override fun onPostSignUpFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast("회원가입 오류 : $message")
+    }
+
+    override fun onGetSignInSuccess(response: GetSignInResponse) {
+        dismissLoadingDialog()
+        val editor = ApplicationClass.sSharedPreferences.edit()
+        editor.putString(ApplicationClass.X_ACCESS_TOKEN, response.result.jwt)
+        editor.commit()
+        Log.d("GetSign","jwt : ${ApplicationClass.sSharedPreferences.getString(ApplicationClass.X_ACCESS_TOKEN,null)}")
+        Log.d("GetSign","성공 여부 : ${response.isSuccess}")
+        Log.d("GetSign","메세지 : ${response.message}")
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onGetSignInFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast("로그인 오류 : $message")
     }
 }

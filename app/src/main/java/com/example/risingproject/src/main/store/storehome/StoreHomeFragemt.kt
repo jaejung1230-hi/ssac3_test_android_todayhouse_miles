@@ -10,7 +10,9 @@ import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentStoreBinding
 import com.example.risingproject.databinding.FragmentStoreHomeBinding
+import com.example.risingproject.src.main.store.storehome.models.temp
 import com.example.risingproject.src.main.store.storehome.util.AdsViewPagerAdapter
+import com.example.risingproject.src.main.store.storehome.util.StoreHomeCategoryGridViewAdapter
 import com.example.risingproject.src.main.store.util.StoreFragmentViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -22,6 +24,24 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
 
     val adarr = listOf<Int>(R.drawable.store_home_ad1,R.drawable.store_home_ad2,R.drawable.store_home_ad3,
         R.drawable.store_home_ad4,R.drawable.store_home_ad5,R.drawable.store_home_ad6,R.drawable.store_home_ad7)
+
+    val storeArr = listOf<temp>(temp(R.drawable.img_store_category_furniture,"가구","소파,침대..."),
+        temp(R.drawable.img_store_category_fabric,"패브릭","침구,커튼..."),
+        temp(R.drawable.img_store_category_lighting,"조명","스탠드,무드등..."),
+        temp(R.drawable.img_store_category_electronic,"가전","냉장고,노트북..."),
+        temp(R.drawable.img_store_category_kitchenware,"주방용품","그릇,냄비..."),
+        temp(R.drawable.img_store_category_decoration,"데코/취미","그림,캔들..."),
+        temp(R.drawable.img_store_category_storage,"수납/정리","리빙박스,행거..."),
+        temp(R.drawable.img_store_category_dailysupplies,"생활용품","욕실,청소..."),
+        temp(R.drawable.img_store_category_necessaries,"생필품","세제,샴푸..."),
+        temp(R.drawable.img_store_category_tool,"공구/DIY","시트지,손잡이..."),
+        temp(R.drawable.img_store_category_interior,"인테리어/시공","주방,욕실..."),
+        temp(R.drawable.img_store_category_pets,"반려동물","사료,패션..."),
+        temp(R.drawable.img_store_category_camping,"캠핑용품","텐트,테이블..."),
+        temp(R.drawable.img_store_category_workout,"실내운동","요가,헬스..."),
+        temp(R.drawable.img_store_category_layette,"유아/아동","침대,매트..."),
+        temp(R.drawable.img_store_category_rental,"렌탈","정수기,비데...")
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,6 +63,9 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
                 }
             })
         }
+
+        binding.gridviewStorehomeCategory.adapter = StoreHomeCategoryGridViewAdapter(requireContext(),storeArr)
+        binding.gridviewStorehomeCategory.isExpanded = true
     }
 
     private fun autoScrollStart(intervalTime: Long) {
