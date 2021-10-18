@@ -1,59 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/container_store_category"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_store_category"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" >
-        <TextView
-            android:id="@+id/toolbar_category_title"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:text="이메일 로그인">
-        </TextView>
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_store_category"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_store_category"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            tools:ignore="MissingConstraints" >
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
+                android:id="@+id/toolbar_category_title"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:text="MD's Pick"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recycler_MDsPick"
-                android:layout_marginBottom="10dp"/>
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:text="이메일 로그인">
+            </TextView>
+        </androidx.appcompat.widget.Toolbar>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.core.widget.NestedScrollView
+            android:background="@color/bgColor"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_store_category"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+                    <com.example.risingproject.util.NestedScrollableHost
+                        android:id="@+id/NestedScrollableHost"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewpager_storcategory_fragment"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </com.example.risingproject.util.NestedScrollableHost>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintRight_toRightOf="@id/NestedScrollableHost"
+                        app:layout_constraintBottom_toBottomOf="@+id/NestedScrollableHost"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="8dp"
+                        android:padding="3dp"
+                        android:background="@drawable/gray_ellipse">
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/tv_viewpager_storcategory_fragment_nownum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_marginEnd="5dp"
+                            android:id="@+id/tv_viewpager_storcategory_fragment_totalnum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.example.risingproject.util.ExpandableHeightGridView
+                    android:paddingHorizontal="10dp"
+                    android:background="@color/white"
+                    android:numColumns="4"
+                    android:id="@+id/gridview_storecategory_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:paddingVertical="10dp"
+                    android:paddingStart="10dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:text="#지금은 할인 중"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:paddingTop="10dp"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_discount_event"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingStart="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@drawable/drawable_left_resize"
+                        android:background="@color/white"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:text="필터로 원하는 상품 찾기"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:weightSum="5"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/bottom_boarder"
+                        android:paddingVertical="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/filter_title1"
+                            android:text="필터"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="4"
+                            android:id="@+id/filter_recycler1"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:weightSum="5"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/bottom_boarder"
+                        android:paddingVertical="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/filter_title2"
+                            android:text="필터"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="4"
+                            android:id="@+id/filter_recycler2"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:weightSum="5"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/bottom_boarder"
+                        android:paddingVertical="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/filter_title3"
+                            android:text="필터"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="4"
+                            android:id="@+id/filter_recycler3"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:weightSum="5"
+                        android:paddingStart="10dp"
+                        android:background="@drawable/bottom_boarder"
+                        android:paddingVertical="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/filter_title4"
+                            android:text="필터"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_weight="4"
+                            android:id="@+id/filter_recycler4"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_main_24"
+                        android:paddingVertical="10dp"
+                        android:textAlignment="center"
+                        android:id="@+id/btn_open_drawer"
+                        android:text="필터 더보기  "
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 보이는 화면과는 별개의 드로워 -->
+    <include
+        android:id="@+id/drawer"
+        android:layout_width="300dp"
+        android:layout_gravity="right"
+        android:layout_height="match_parent"
+        layout="@layout/drawer_store_category_filter"
+        />
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+

@@ -15,8 +15,10 @@
     <color name="black">#000000</color>
     <color name="softGray">#dadada</color>
 
+
     <color name="main">#7adbfe</color>
     <color name="softMain">#f0fbff</color>
+    <color name="bgColor">#f7f8fa</color>
 
     <color name="naverGreen">#2cb601</color>
     <color name="facebookBlue">#3c56a0</color>

@@ -17,7 +17,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
 
     private var currentPosition = Int.MAX_VALUE/2
     private var myHandler = MyHandler()
-    private val intervalTime = 15000.toLong()
+    private val intervalTime = 10000.toLong()
 
     val adarr = listOf<Int>(R.drawable.store_home_ad1,R.drawable.store_home_ad2,R.drawable.store_home_ad3,
         R.drawable.store_home_ad4,R.drawable.store_home_ad5,R.drawable.store_home_ad6,R.drawable.store_home_ad7)
@@ -82,9 +82,6 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
 
             if(msg.what == 0) {
                 ++currentPosition
-                if(currentPosition >= adarr.size){
-                    currentPosition =0
-                }
                 binding.viewpagerStorehomeFragment.setCurrentItem(currentPosition, true) // 다음 페이지로 이동
                 autoScrollStart(intervalTime) // 스크롤을 계속 이어서 한다.
             }

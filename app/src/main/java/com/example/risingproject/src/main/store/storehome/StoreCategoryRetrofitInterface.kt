@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface StoreCategoryRetrofitInterface {
     @GET("shops/menus")
-    fun getCategoryItem(@Query("menuId") menuId : Int) : Call<GetCategoryItemResponse>
+    fun getCategoryItem(@Query("somebody[menuId]") menuId : Int) : Call<GetCategoryItemResponse>
 }
