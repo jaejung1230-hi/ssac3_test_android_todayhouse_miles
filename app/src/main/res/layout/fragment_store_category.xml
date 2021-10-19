@@ -264,6 +264,15 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
+                <com.example.risingproject.util.ExpandableHeightGridView
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:background="@color/white"
+                    android:numColumns="2"
+                    android:id="@+id/gridview_storecategory_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

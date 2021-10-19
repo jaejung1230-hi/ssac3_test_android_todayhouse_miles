@@ -15,9 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentStoreCategoryBinding
-import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
-import com.example.risingproject.src.main.store.storehome.models.InfoForUnderFilter
-import com.example.risingproject.src.main.store.storehome.models.temp
+import com.example.risingproject.src.main.store.storehome.models.*
 import com.example.risingproject.src.main.store.storehome.util.*
 
 class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(FragmentStoreCategoryBinding::bind, R.layout.fragment_store_category) , StoreCategoryFragmentView, FilterItemClick {
@@ -60,7 +58,6 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         }
 
         StoreCategoryService(this).tryGetCategoryItem()
-
 
         binding.btnOpenDrawer.setOnClickListener {  customPenDrawer(-1)}
         binding.drawer.btnDrawerClose.setOnClickListener { binding.containerStoreCategory.closeDrawer(Gravity.RIGHT) }
@@ -179,6 +176,18 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         Log.d("test",message)
     }
 
+    override fun onGetCategoryItemUseFilterSuccess(response: GetCategoryItemUseFilterResponse) {
+        dismissLoadingDialog()
+        Log.d("test",response.toString())
+        binding.gridviewStorecategoryFilter.adapter = StoreCategoryCategoryFilterGridViewAdapter(requireContext(),response.result)
+        binding.gridviewStorecategoryFilter.isExpanded = true
+    }
+
+    override fun onGetCategoryItemUseFilterFailure(message: String) {
+        Log.d("test",message)
+        dismissLoadingDialog()
+    }
+
     override fun getSelectedItem(pos1: Int, pos2: Int) {
         showCustomToast("${pos1} / ${pos2}")
         var count1 = 0
@@ -198,6 +207,31 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             count1++
         }
         Log.d("for","//////////////////////////////////////")
+
+        var ripperCode = 0
+        ripperCode = if(FilterBoolean.arr[arr2.indexOf("리퍼 상품")][0]){ 1 }else{ 0 }
+
+        var colorFlag = false
+        var colorFlagCount = 0
+        for(i in FilterBoolean.arr[arr2.indexOf("색상")]){
+            if(i){
+                colorFlag = true
+                break
+            }
+            colorFlagCount++
+        }
+        var colorCode : String? = null
+        if(colorFlag){
+            when(underarr[arr2.indexOf("색상")].filters[colorFlagCount]){
+                "화이트" -> {colorCode = "WHITE"}
+                "그린" -> {colorCode = "GREEN"}
+                "베이지" -> {colorCode = "BEIGE"}
+                else -> {colorCode = "ETC"}
+            }
+        }
+        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,ripperCode,colorCode,null,null,null,null,null,null)
+        StoreCategoryService(this).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
+        showLoadingDialog(requireContext())
     }
 
     fun customPenDrawer(pageNum : Int){
