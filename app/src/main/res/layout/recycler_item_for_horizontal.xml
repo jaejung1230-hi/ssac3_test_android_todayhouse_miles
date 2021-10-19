@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:paddingBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="170dp"
@@ -118,6 +119,7 @@
                android:text="리뷰"/>
 
            <TextView
+               android:id="@+id/tv_item_reviews"
                android:textStyle="bold"
                android:textSize="11dp"
                android:layout_width="wrap_content"
@@ -125,6 +127,36 @@
                android:text="19"/>
 
        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:visibility="gone"
+            android:layout_marginEnd="5dp"
+            android:padding="3dp"
+            android:background="@drawable/delivery_free_bg"
+            android:textColor="@color/blackForText"
+            android:id="@+id/tv_item_delivery_free"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="무료 배송"/>
+
+        <TextView
+            android:visibility="gone"
+            android:padding="3dp"
+            android:background="@drawable/special_price_bg"
+            android:textColor="@color/white"
+            android:id="@+id/tv_item_special_price"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="특가"/>
+    </LinearLayout>
 
    </LinearLayout>
 

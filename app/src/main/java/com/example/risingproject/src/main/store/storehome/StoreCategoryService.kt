@@ -14,7 +14,6 @@ class StoreCategoryService(val view : StoreCategoryFragmentView) {
         val storeCategoryRetrofitInterface = ApplicationClass.sRetrofit.create(StoreCategoryRetrofitInterface::class.java)
         storeCategoryRetrofitInterface.getCategoryItem(1).enqueue(object : Callback<GetCategoryItemResponse> {
             override fun onResponse(call: Call<GetCategoryItemResponse>, response: Response<GetCategoryItemResponse>) {
-                Log.d("test",response.body()!!.message.toString())
                 view.onGetCategoryItemSuccess(response.body() as GetCategoryItemResponse)
             }
 
@@ -23,6 +22,7 @@ class StoreCategoryService(val view : StoreCategoryFragmentView) {
             }
 
         })
-
     }
+
+    fun tryGetCategoryItemUseFilter(){}
 }

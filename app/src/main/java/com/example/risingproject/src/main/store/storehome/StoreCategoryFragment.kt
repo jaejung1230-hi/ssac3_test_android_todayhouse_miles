@@ -6,6 +6,7 @@ import android.os.Message
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.Filter
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +20,12 @@ import com.example.risingproject.src.main.store.storehome.models.InfoForUnderFil
 import com.example.risingproject.src.main.store.storehome.models.temp
 import com.example.risingproject.src.main.store.storehome.util.*
 
-class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(FragmentStoreCategoryBinding::bind, R.layout.fragment_store_category) , StoreCategoryFragmentView{
+class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(FragmentStoreCategoryBinding::bind, R.layout.fragment_store_category) , StoreCategoryFragmentView, FilterItemClick {
+    object FilterBoolean{
+        val arr = arrayListOf<ArrayList<Boolean>>()
+    }
+    var underarr = listOf<InfoForUnderFilter>()
+    var arr2 = listOf<String>()
 
     var abslist : List<Int> = listOf(R.drawable.store_category_ad1, R.drawable.store_category_ad2, R.drawable.store_category_ad3,
         R.drawable.store_category_ad4, R.drawable.store_category_ad5, R.drawable.store_category_ad6)
@@ -43,6 +49,9 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.gridviewStorecategoryCategory.adapter = StoreCategoryCategoryGridViewAdapter(requireContext(),storeArr)
+        binding.gridviewStorecategoryCategory.isExpanded = true
+
         binding.containerStoreCategory.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         val bundle = getArguments()
         if(bundle != null){
@@ -53,7 +62,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         StoreCategoryService(this).tryGetCategoryItem()
 
 
-        binding.btnOpenDrawer.setOnClickListener { binding.containerStoreCategory.openDrawer(Gravity.RIGHT) }
+        binding.btnOpenDrawer.setOnClickListener {  customPenDrawer(-1)}
         binding.drawer.btnDrawerClose.setOnClickListener { binding.containerStoreCategory.closeDrawer(Gravity.RIGHT) }
 
         binding.viewpagerStorcategoryFragment.adapter = AdsViewPagerAdapter(abslist)
@@ -78,11 +87,8 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             })
         }
 
-        binding.gridviewStorecategoryCategory.adapter = StoreCategoryCategoryGridViewAdapter(requireContext(),storeArr)
-        binding.gridviewStorecategoryCategory.isExpanded = true
-
-        val arr = listOf<String>("정렬","리퍼 상품","색상","사용 인원","소재","우드톤", "지금 가장 핫한 상품", "자재 등급","미드센추리 모던","브랜드","조립 여부","상품 유형","가격(원)","배송")
-        val underarr = listOf<InfoForUnderFilter>(
+        arr2 = listOf<String>("정렬","리퍼 상품","색상","사용 인원","소재","우드톤", "지금 가장 핫한 상품", "자재 등급","미드센추리 모던","브랜드","조립 여부","상품 유형","가격(원)","배송")
+        underarr = listOf<InfoForUnderFilter>(
             InfoForUnderFilter("radio", listOf<String>("판매순","인기순","낮은 가격순","높은 가격순","리뷰 많은 순", "유저사진 많은 순", "최신순")),
             InfoForUnderFilter("check", listOf<String>("리퍼 상품 보기")),
             InfoForUnderFilter("color", listOf<String>("화이트","그레이","블랙","베이지","브라운", "실버", "골드", "레드", "오렌지", "옐로우", "그린", "블루", "네이비", "바이올렛", "핑크", "멀티(혼합)",  "투명")),
@@ -99,54 +105,42 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             InfoForUnderFilter("radio", listOf<String>("무료 배송","희망일배송","업체직접배송","오늘의집 배송","제주도 배송 가능"))
         )
 
-        binding.drawer.filterCategoryTop.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = FilterTopAdapter(requireContext(),arr,underarr)
-        binding.drawer.filterCategoryTop.adapter = adapter
+        for(i in underarr.listIterator()){
+            val arr2 = arrayListOf<Boolean>()
+            for(j in i.filters.listIterator()){
+                arr2.add(false)
+            }
+            FilterBoolean.arr.add(arr2)
+        }
+
+        for(i in FilterBoolean.arr){
+            Log.d("for",i.size.toString())
+        }
 
         val titleList = listOf<TextView>(binding.filterTitle1,binding.filterTitle2,binding.filterTitle3,binding.filterTitle4)
         val recyclerList = listOf<RecyclerView>(binding.filterRecycler1,binding.filterRecycler2,binding.filterRecycler3,binding.filterRecycler4)
 
         for (i in 1..4){
-            titleList[i-1].text = arr[i]
+            titleList[i-1].text = arr2[i]
             val linearLayoutManager = LinearLayoutManager(requireContext())
             linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
             recyclerList[i-1].layoutManager = linearLayoutManager
-            if(arr[i].equals("색상")) {
-                val adapter = HorizontalFilterColorAdapter(requireContext(), underarr[i].filters)
+            if(arr2[i].equals("색상")) {
+                val adapter = HorizontalFilterColorAdapter(requireContext(), underarr[i].filters, this,i)
                 recyclerList[i-1].adapter = adapter
             }else{
-                val adapter = HorizontalTextColorAdapter(requireContext(), underarr[i].filters)
+                val adapter = HorizontalTextColorAdapter(requireContext(), underarr[i].filters, this,i)
                 recyclerList[i-1].adapter = adapter
             }
         }
 
-        binding.toolbarCategoryTitle.setOnClickListener {
-            for (i in 1..4){
-                titleList[i-1].text = arr[i]
-                val linearLayoutManager = LinearLayoutManager(requireContext())
-                linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-                recyclerList[i-1].layoutManager = linearLayoutManager
-                if(arr[i].equals("색상")) {
-                    val adapter = HorizontalFilterColorAdapter(requireContext(), underarr[i].filters)
-                    recyclerList[i-1].adapter = adapter
-                }else{
-                    val adapter = HorizontalTextColorAdapter(requireContext(), underarr[i].filters)
-                    recyclerList[i-1].adapter = adapter
-                }
-            }
-            binding.drawer.filterCategoryTop.layoutManager = LinearLayoutManager(requireContext())
-            val adapter = FilterTopAdapter(requireContext(),arr,underarr)
-            binding.drawer.filterCategoryTop.adapter = adapter
-        }
     }
 
-    // 다른 페이지 갔다가 돌아오면 다시 스크롤 시작
     override fun onResume() {
         super.onResume()
         autoScrollStart(2000.toLong())
     }
 
-    // 다른 페이지로 떠나있는 동안 스크롤이 동작할 필요는 없음. 정지
     override fun onPause() {
         super.onPause()
         autoScrollStop()
@@ -174,9 +168,42 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
 
     override fun onGetCategoryItemSuccess(response: GetCategoryItemResponse) {
         Log.d("test",response.toString())
+
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.recyclerDiscountEvent.setLayoutManager(linearLayoutManager)
+        binding.recyclerDiscountEvent.adapter = StoreCategoryHorizontalAdapter(requireContext(),response.result)
     }
 
     override fun onGetCategoryItemFailure(message: String) {
         Log.d("test",message)
+    }
+
+    override fun getSelectedItem(pos1: Int, pos2: Int) {
+        showCustomToast("${pos1} / ${pos2}")
+        var count1 = 0
+        val recyclerList = listOf<RecyclerView>(binding.filterRecycler1,binding.filterRecycler2,binding.filterRecycler3,binding.filterRecycler4)
+        if(pos1 in 1..4){
+            recyclerList[pos1-1].adapter!!.notifyItemChanged(pos2)
+        }
+        Log.d("for","//////////////////////////////////////")
+        for(i in FilterBoolean.arr){
+            var count2 = 0
+            for(j in i){
+                if(j){
+                    Log.d("for",underarr[count1].filters[count2])
+                }
+                count2++
+            }
+            count1++
+        }
+        Log.d("for","//////////////////////////////////////")
+    }
+
+    fun customPenDrawer(pageNum : Int){
+        binding.drawer.filterCategoryTop.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = FilterTopAdapter(requireContext(),arr2,underarr, this, pageNum)
+        binding.drawer.filterCategoryTop.adapter = adapter
+        binding.containerStoreCategory.openDrawer(Gravity.RIGHT)
     }
 }

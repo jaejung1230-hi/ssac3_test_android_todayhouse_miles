@@ -9,7 +9,8 @@ import com.example.risingproject.R
 import com.example.risingproject.databinding.RecyclerItemFilterCategoryTopBinding
 import com.example.risingproject.src.main.store.storehome.models.InfoForUnderFilter
 
-class FilterTopAdapter(private val context: Context, private val items: List<String>, private val underItems : List<InfoForUnderFilter>): RecyclerView.Adapter<FilterTopAdapter.ViewHolder>() {
+class FilterTopAdapter(private val context: Context, private val items: List<String>, private val underItems : List<InfoForUnderFilter> ,
+                       private val filterItemClick : FilterItemClick, private val pageNum : Int): RecyclerView.Adapter<FilterTopAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterTopAdapter.ViewHolder {
         val binding = RecyclerItemFilterCategoryTopBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,24 +18,27 @@ class FilterTopAdapter(private val context: Context, private val items: List<Str
     }
 
     override fun onBindViewHolder(holder: FilterTopAdapter.ViewHolder, position: Int) {
-        holder.bind(context,items[position], underItems[position])
+        holder.bind(context,items[position], underItems[position], filterItemClick, position, position == pageNum)
     }
 
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(private var binding: RecyclerItemFilterCategoryTopBinding) : RecyclerView.ViewHolder(binding.root){
         var open_yet = true
-        fun bind(context: Context, item: String , underItems : InfoForUnderFilter){
+        fun bind(context: Context, item: String, underItems: InfoForUnderFilter, filterItemClick: FilterItemClick, p0: Int, b: Boolean){
             binding.filterName.text = item
             binding.filterUnder.isExpanded = true
 
-            if(underItems.type.equals("check")){
-                binding.filterUnder.numColumns = 2
-            }else{
+            if(underItems.type.equals("radio")){
                 binding.filterUnder.numColumns = 1
+            }else{
+                binding.filterUnder.numColumns = 2
+            }
+            if(b){
+                open_yet = false
             }
 
-            binding.filterUnder.adapter = FilterUnderAdapter(context,underItems)
+            binding.filterUnder.adapter = FilterUnderAdapter(context,underItems, filterItemClick, p0)
             binding.filterUnder.isExpanded = true
 
             binding.containerFilter.setOnClickListener {
