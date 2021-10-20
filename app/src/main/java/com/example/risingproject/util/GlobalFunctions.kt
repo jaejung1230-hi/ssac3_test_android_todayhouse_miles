@@ -1,6 +1,16 @@
 package com.example.risingproject.util
 
+import android.content.Context
 import com.example.risingproject.R
+import org.json.JSONException
+
+import org.json.JSONArray
+
+import android.preference.PreferenceManager
+
+import android.content.SharedPreferences
+import com.example.risingproject.config.ApplicationClass
+
 
 object GlobalFunctions {
 
@@ -44,5 +54,37 @@ object GlobalFunctions {
                 return R.drawable.ic_baseline_check_white_12
             }
         }
+    }
+
+    fun setRecordPref(values: ArrayList<String>) {
+        val editor = ApplicationClass.sSharedPreferences.edit()
+
+        val a = JSONArray()
+        for (i in 0 until values.size) {
+            a.put(values[i])
+        }
+        if (values.isNotEmpty()) {
+            editor.putString("record", a.toString())
+        } else {
+            editor.putString("record", null)
+        }
+        editor.commit()
+    }
+
+    fun getRecordPref(): ArrayList<String>? {
+        val json = ApplicationClass.sSharedPreferences.getString("record", null)
+        val urls = ArrayList<String>()
+        if (json != null) {
+            try {
+                val a = JSONArray(json)
+                for (i in 0 until a.length()) {
+                    val url = a.optString(i)
+                    urls.add(url)
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+        return urls
     }
 }

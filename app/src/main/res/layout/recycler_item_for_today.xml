@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:weightSum="2"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_weight="1"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/cardview_for_img_item_today"
+        android:layout_width="0dp"
+        android:layout_height="165dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/img_item_today"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/main"/>
+
+            <ImageView
+                android:layout_gravity="right"
+                android:scaleType="fitXY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_todays_deal"/>
+
+            <TextView
+                android:layout_margin="8dp"
+                android:padding="3dp"
+                android:textColor="@color/white"
+                android:text="asdasds"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:background="@drawable/special_price_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_left_time"/>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingVertical="10dp"
+        android:paddingEnd="10dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="13dp"
+            android:id="@+id/tv_company_name_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회사명"
+            />
+
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_name_today"
+            android:textColor="@color/blackForText"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="15dp"
+            android:id="@+id/tv_item_title_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상품이름 매우김\n두 줄로 가는 경우도 더러 존재"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_temp_today1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_title_today"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:drawableLeft="@drawable/ic_baseline_star_main_12"
+                android:layout_marginEnd="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:id="@+id/tv_item_rate_today"
+                android:textSize="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.6"/>
+
+            <TextView
+                android:layout_marginEnd="2dp"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리뷰"/>
+
+            <TextView
+                android:id="@+id/tv_item_reviews_today"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_temp_today2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_temp_today1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="#f67a7c"
+                android:textSize="18dp"
+                android:id="@+id/tv_item_percent_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"/>
+
+            <TextView
+                android:layout_marginEnd="5dp"
+                android:textStyle="bold"
+                android:textColor="#f67a7c"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"/>
+
+            <TextView
+                android:layout_marginEnd="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:id="@+id/tv_item_price_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="외"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_temp_today3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_temp_today2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginEnd="5dp"
+                android:padding="3dp"
+                android:background="@drawable/delivery_free_bg"
+                android:textColor="@color/blackForText"
+                android:id="@+id/tv_item_delivery_free_today"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무료 배송"/>
+
+            <TextView
+                android:visibility="gone"
+                android:padding="3dp"
+                android:background="@drawable/special_price_bg"
+                android:textColor="@color/white"
+                android:id="@+id/tv_item_special_price_today"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="특가"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

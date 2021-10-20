@@ -3,8 +3,7 @@ package com.example.risingproject.src.search.util
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.risingproject.src.main.store.storehome.StoreHomeFragemt
-import com.example.risingproject.src.search.storeSearch.StoreSearchFragemt
+import com.example.risingproject.src.search.storeSearch.StoreSearchFragment
 
 class SearchActivityViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
     private val NUM_PAGES = 8
@@ -13,7 +12,7 @@ class SearchActivityViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter
 
     override fun createFragment(position: Int): Fragment {
 
-            return StoreSearchFragemt()
+            return StoreSearchFragment()
 
     }
 }

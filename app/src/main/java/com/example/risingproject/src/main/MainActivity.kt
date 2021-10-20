@@ -3,11 +3,13 @@ package com.example.risingproject.src.main
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.example.risingproject.R
+import com.example.risingproject.config.ApplicationClass
 import com.example.risingproject.config.BaseActivity
 import com.example.risingproject.databinding.ActivityMainBinding
 import com.example.risingproject.src.main.home.HomeFragment
 import com.example.risingproject.src.main.myPage.MyPageFragment
 import com.example.risingproject.src.main.store.StoreFragemt
+import com.example.risingproject.util.GlobalFunctions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -66,5 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 isOpen = true
             }
         }
+
+        GlobalFunctions.setRecordPref(arrayListOf<String>("1","3","6","7","8"))
     }
 }

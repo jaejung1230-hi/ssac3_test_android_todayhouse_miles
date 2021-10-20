@@ -52,11 +52,6 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         temp(R.drawable.img_store_category_furniture_chair,"의자/스톨","시트지,손잡이..."),
         temp(R.drawable.img_store_category_furniture_wall,"병풍/파티션","주방,욕실..."))
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search_and_basket, menu)

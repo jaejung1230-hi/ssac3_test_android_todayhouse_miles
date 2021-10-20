@@ -9,22 +9,47 @@
 
     <!-- 상단바 -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_signup"
+        android:id="@+id/toolbar_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         tools:ignore="MissingConstraints" >
-        <TextView
-            android:id="@+id/toolbar_search"
+        <LinearLayout
+            android:background="@drawable/gray_solied_btn"
+            android:orientation="horizontal"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:textSize="20dp"
             android:text="이메일로 회원가입">
+
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_menu_search"/>
+
+            <EditText
+                android:id="@+id/edit_toolbar_search"
+                android:singleLine="true"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:id="@+id/btn_toolbar_search"
+            android:textColor="@color/blackForText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="16dp"
+            android:text="검색">
         </TextView>
     </androidx.appcompat.widget.Toolbar>
 
@@ -47,7 +72,7 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_search_fragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"/>
 </LinearLayout>

@@ -3,17 +3,21 @@ package com.example.risingproject.src.main.store.storehome
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentStoreHomeBinding
+import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
+import com.example.risingproject.src.main.store.storehome.models.ResultItemAll
 import com.example.risingproject.src.main.store.storehome.models.temp
-import com.example.risingproject.src.main.store.storehome.util.AdsViewPagerAdapter
-import com.example.risingproject.src.main.store.storehome.util.StoreHomeCategoryGridViewAdapter
+import com.example.risingproject.src.main.store.storehome.util.*
+import com.example.risingproject.util.GlobalFunctions
 
 
-class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHomeBinding::bind, R.layout.fragment_store_home) {
+class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHomeBinding::bind, R.layout.fragment_store_home), StoreHomeFragmentView {
 
     private var currentPosition = Int.MAX_VALUE/2
     private var myHandler = MyHandler()
@@ -63,9 +67,9 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
 
         binding.gridviewStorehomeCategory.adapter = StoreHomeCategoryGridViewAdapter(requireContext(),this,storeArr)
         binding.gridviewStorehomeCategory.isExpanded = true
+
+        StoreHomeService(this).tryGetCategoryItem()
     }
-
-
 
     private fun autoScrollStart(intervalTime: Long) {
         myHandler.removeMessages(0) // 이거 안하면 핸들러가 1개, 2개, 3개 ... n개 만큼 계속 늘어남
@@ -98,6 +102,38 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
     override fun onPause() {
         super.onPause()
         autoScrollStop()
+    }
+
+    override fun onGetAllItemSuccess(response: GetAllItemResponse) {
+        binding.recyclerTodaysDeal.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = TodaysDealAdapter(requireContext(),response.result.subList(0,4))
+        binding.recyclerTodaysDeal.adapter = adapter
+
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val records = GlobalFunctions.getRecordPref()
+        Log.d("record","${records}")
+        if (records != null) {
+            val recordList = arrayListOf<ResultItemAll>()
+            for(record in records){
+                for(resp in response.result){
+                    Log.d("record","${record.toInt()} - ${resp.itemId}")
+                    if(record.toInt() == resp.itemId){
+                        recordList.add(resp)
+                    }
+                }
+            }
+            binding.recyclerRecord.layoutManager = linearLayoutManager
+            binding.recyclerRecord.adapter = StoreHomeRecordAdapter(requireContext(),recordList)
+        }
+
+        binding.gridviewStorehomePopulor.adapter = StoreHomePopulorFilterGridViewAdapter(requireContext(),response.result)
+        binding.gridviewStorehomePopulor.isExpanded = true
+
+    }
+
+    override fun onGetAllItemFailure(message: String) {
+        showCustomToast("데이터 불러오기에 실패했습니다.")
     }
 
 }
