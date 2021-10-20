@@ -37,6 +37,13 @@ class FilterTopAdapter(private val context: Context, private val items: List<Str
             if(b){
                 open_yet = false
             }
+            if(open_yet){
+                binding.filterImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                binding.filterUnder.visibility = View.GONE
+            }else{
+                binding.filterImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_main_24)
+                binding.filterUnder.visibility = View.VISIBLE
+            }
 
             binding.filterUnder.adapter = FilterUnderAdapter(context,underItems, filterItemClick, p0)
             binding.filterUnder.isExpanded = true

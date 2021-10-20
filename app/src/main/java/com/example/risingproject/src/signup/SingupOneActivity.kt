@@ -34,8 +34,8 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(binding.toolbarSignup)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.title = ""
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         binding.tvSigninTemp2.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         binding.tvSigninTemp3.paintFlags = Paint.UNDERLINE_TEXT_FLAG

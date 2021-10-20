@@ -31,7 +31,8 @@
             </TextView>
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.core.widget.NestedScrollView
+        <com.example.risingproject.util.StickyScrollView
+            android:id="@+id/sticky_scrollView"
             android:background="@color/bgColor"
             android:fillViewport="true"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_store_category"
@@ -264,9 +265,69 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
-                <com.example.risingproject.util.ExpandableHeightGridView
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_sticky"
                     android:layout_marginTop="10dp"
-                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:text="전체 117,798"
+                        android:textColor="@color/blackForText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/btn_sticky_open_sort"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_sticky_open_drawer"
+                        android:layout_marginStart="10dp"
+                        android:text="정렬"
+                        android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                        android:textColor="@color/blackForText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/btn_sticky_open_drawer"
+                        android:drawableLeft="@drawable/ic_filter_mini_white"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/main_solied_btn"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="10dp"
+                        android:text=" 필터"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/white"
+                    android:paddingVertical="5dp"
+                    android:id="@+id/recycler_for_ten_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@color/white"
+                    android:paddingVertical="5dp"
+                    android:id="@+id/recycler_for_selected_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.example.risingproject.util.ExpandableHeightGridView
+                    android:columnWidth="190dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
                     android:background="@color/white"
                     android:numColumns="2"
                     android:id="@+id/gridview_storecategory_filter"
@@ -275,13 +336,13 @@
 
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </com.example.risingproject.util.StickyScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 보이는 화면과는 별개의 드로워 -->
     <include
-        android:id="@+id/drawer"
+        android:id="@+id/drawer2"
         android:layout_width="300dp"
         android:layout_gravity="right"
         android:layout_height="match_parent"

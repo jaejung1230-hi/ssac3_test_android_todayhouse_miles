@@ -30,15 +30,15 @@ class StoreCategoryCategoryFilterGridViewAdapter(private var context: Context, v
 
         val item = items[p0]
         val inflater : LayoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view : View = inflater.inflate(R.layout.recycler_item_for_horizontal, p2, false)
-        val tv_company_name = view.findViewById<TextView>(R.id.tv_company_name)
-        val tv_item_title = view.findViewById<TextView>(R.id.tv_item_title)
-        val tv_item_percent = view.findViewById<TextView>(R.id.tv_item_percent)
-        val tv_item_price = view.findViewById<TextView>(R.id.tv_item_price)
-        val tv_item_rate = view.findViewById<TextView>(R.id.tv_item_rate)
-        val tv_item_reviews = view.findViewById<TextView>(R.id.tv_item_reviews)
-        val tv_item_special_price = view.findViewById<TextView>(R.id.tv_item_special_price)
-        val tv_item_delivery_free = view.findViewById<TextView>(R.id.tv_item_delivery_free)
+        val view : View = inflater.inflate(R.layout.recycler_item_for_big, p2, false)
+        val tv_company_name = view.findViewById<TextView>(R.id.tv_company_name_big)
+        val tv_item_title = view.findViewById<TextView>(R.id.tv_item_title_big)
+        val tv_item_percent = view.findViewById<TextView>(R.id.tv_item_percent_big)
+        val tv_item_price = view.findViewById<TextView>(R.id.tv_item_price_big)
+        val tv_item_rate = view.findViewById<TextView>(R.id.tv_item_rate_big)
+        val tv_item_reviews = view.findViewById<TextView>(R.id.tv_item_reviews_big)
+        val tv_item_special_price = view.findViewById<TextView>(R.id.tv_item_special_price_big)
+        val tv_item_delivery_free = view.findViewById<TextView>(R.id.tv_item_delivery_free_big)
 
         tv_company_name.text = item.companyName
         tv_item_title.text = item.itemName

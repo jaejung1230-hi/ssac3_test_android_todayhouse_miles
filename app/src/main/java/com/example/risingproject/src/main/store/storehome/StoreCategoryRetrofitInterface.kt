@@ -9,10 +9,10 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface StoreCategoryRetrofitInterface {
-    @GET("items")
+    @GET("app/")
     fun getCategoryItem(@Query("menuId") menuId : Int) : Call<GetCategoryItemResponse>
 
-    @GET("{menuId}/items")
+    @GET("app/{menuId}/items")
     fun getCategoryItemUseFilter(
         @Path("menuId") menuId : Int,
         @Query("numOfPeople") numOfPeople: Int?,

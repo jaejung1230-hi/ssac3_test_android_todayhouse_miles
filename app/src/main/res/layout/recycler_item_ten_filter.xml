@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_marginStart="10dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/blackForText"
+    android:padding="10dp"
+    android:id="@+id/container_filter_category_horizontal_text"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:text="이름"
+        android:textColor="@color/blackForText"
+        android:id="@+id/filter_category_horizontal_text"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_14"
+        />
+
+</com.google.android.material.card.MaterialCardView>

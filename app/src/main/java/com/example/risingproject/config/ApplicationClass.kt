@@ -12,7 +12,7 @@ class ApplicationClass : Application() {
     //val API_URL = "https://members.softsquared.com/"
 
     // 테스트 서버 주소
-    val API_URL = "https://dev.senya.today/app/"
+    val API_URL = "https://dev.senya.today/"
 
     // 실 서버 주소
     // val API_URL = "http://api.test.com/"

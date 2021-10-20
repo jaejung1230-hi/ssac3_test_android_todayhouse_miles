@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 상단바 -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints" >
+        <TextView
+            android:id="@+id/toolbar_search"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="이메일로 회원가입">
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs_search_fragment"
+        android:layout_gravity="center"
+        app:tabUnboundedRipple="true"
+        app:tabRippleColor="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorColor="@color/main"
+        app:tabIndicatorFullWidth="false"
+        app:tabSelectedTextColor="@color/main"
+        app:tabTextColor="@color/black"
+        app:tabGravity="center"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_search_fragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"/>
+</LinearLayout>

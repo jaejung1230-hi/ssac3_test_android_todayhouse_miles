@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 
 interface EmailLoginRetrofitInterface {
-    @POST("login")
+    @POST("app/login")
     fun getSignIn(@Body params: GetSignInRequest): Call<GetSignInResponse>
 }
