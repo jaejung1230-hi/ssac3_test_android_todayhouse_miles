@@ -1,11 +1,13 @@
 package com.example.risingproject.src.main.store.storehome.util
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.risingproject.databinding.RecyclerItemForHorizontalBinding
+import com.example.risingproject.src.detailInto.DetailInfoActivity
 import com.example.risingproject.src.main.store.storehome.models.ResultItemAll
 import java.text.DecimalFormat
 
@@ -24,6 +26,11 @@ class StoreHomeRecordAdapter(private val context: Context, private val items: Li
 
     class ViewHolder(private var binding: RecyclerItemForHorizontalBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(context: Context, item: ResultItemAll){
+            binding.containerHorizontal.setOnClickListener {
+                val intent = Intent(context, DetailInfoActivity::class.java)
+                intent.putExtra("itemId",item.itemId)
+                context.startActivity(intent)
+            }
             binding.tvCompanyName.text = item.companyName
             binding.tvItemTitle.text = item.itemName
             binding.tvItemPercent.text = item.percenttage.toString()

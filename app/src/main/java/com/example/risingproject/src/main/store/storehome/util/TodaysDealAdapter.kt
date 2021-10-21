@@ -70,7 +70,6 @@ class TodaysDealAdapter(private val context: Context, private val items: List<Re
                 val intent = Intent(context, DetailInfoActivity::class.java)
                 intent.putExtra("itemId",item.itemId)
                 context.startActivity(intent)
-
             }
 
             binding.tvCompanyNameToday.text = item.companyName

@@ -16,7 +16,12 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
     }
 
     override fun onGetDetailInfoSuccess(response: GetDetailInfoResponse) {
-        Log.d("DetailInfo",response.toString())
+        Log.d("DetailInfo",response.result[0].photoImage.toString())
+        Log.d("DetailInfo",response.result[1].itemInfo.toString())
+        Log.d("DetailInfo",response.result[2].totalReivewRate.toString())
+        Log.d("DetailInfo",response.result[3].totalReviewNum.toString())
+        Log.d("DetailInfo",response.result[4].reviewList.toString())
+
     }
 
     override fun onGetDetailInfoFailure(message: String) {

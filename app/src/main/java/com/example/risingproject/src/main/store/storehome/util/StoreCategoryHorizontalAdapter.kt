@@ -1,11 +1,13 @@
 package com.example.risingproject.src.main.store.storehome.util
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.risingproject.databinding.RecyclerItemForHorizontalBinding
+import com.example.risingproject.src.detailInto.DetailInfoActivity
 import com.example.risingproject.src.main.store.storehome.models.ResultItem
 import java.text.DecimalFormat
 
@@ -31,6 +33,12 @@ class StoreCategoryHorizontalAdapter(private val context: Context, private val i
             binding.tvItemPrice.text = t_dec_up.format(item.sale)
             binding.tvItemRate.text = item.reviewRate.toString()
             binding.tvItemReviews.text = item.numOfReviews.toString()
+
+            binding.containerHorizontal.setOnClickListener {
+                val intent = Intent(context, DetailInfoActivity::class.java)
+                intent.putExtra("itemId",2)
+                context.startActivity(intent)
+            }
 
             if(item.deliveryFee == "N"){
                 binding.tvItemDeliveryFree.visibility = View.VISIBLE
