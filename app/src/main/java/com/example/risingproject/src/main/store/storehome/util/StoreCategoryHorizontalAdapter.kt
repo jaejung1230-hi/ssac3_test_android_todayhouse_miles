@@ -36,7 +36,7 @@ class StoreCategoryHorizontalAdapter(private val context: Context, private val i
 
             binding.containerHorizontal.setOnClickListener {
                 val intent = Intent(context, DetailInfoActivity::class.java)
-                intent.putExtra("itemId",2)
+                intent.putExtra("itemId",item.itemId)
                 context.startActivity(intent)
             }
 

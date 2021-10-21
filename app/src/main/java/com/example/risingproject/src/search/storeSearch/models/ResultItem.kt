@@ -3,6 +3,7 @@ package com.example.risingproject.src.search.storeSearch.models
 import com.google.gson.annotations.SerializedName
 
 data class ResultItem (
+    @SerializedName("itemId") val itemId: Int,
     @SerializedName("itemName") val itemName: String,
     @SerializedName("companyName") val companyName: String,
     @SerializedName("price") val price: Int,
