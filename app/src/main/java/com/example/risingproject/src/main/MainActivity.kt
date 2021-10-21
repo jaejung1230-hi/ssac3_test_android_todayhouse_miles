@@ -68,7 +68,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 isOpen = true
             }
         }
-
-        GlobalFunctions.setRecordPref(arrayListOf<String>("1","3","6","7","8"))
     }
 }

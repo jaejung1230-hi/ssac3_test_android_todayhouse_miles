@@ -1,6 +1,7 @@
 package com.example.risingproject.src.main.store.storehome.util
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import com.example.risingproject.databinding.RecyclerItemForTodayBinding
 import com.example.risingproject.src.main.store.storehome.models.ResultItemAll
 import android.os.CountDownTimer
 import android.util.Log
+import com.example.risingproject.R
+import com.example.risingproject.src.detailInto.DetailInfoActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -62,6 +65,13 @@ class TodaysDealAdapter(private val context: Context, private val items: List<Re
         }
 
         fun bind(context: Context, item: ResultItemAll){
+
+            binding.containerToday.setOnClickListener {
+                val intent = Intent(context, DetailInfoActivity::class.java)
+                intent.putExtra("itemId",item.itemId)
+                context.startActivity(intent)
+
+            }
 
             binding.tvCompanyNameToday.text = item.companyName
             binding.tvItemTitleToday.text = item.itemName
