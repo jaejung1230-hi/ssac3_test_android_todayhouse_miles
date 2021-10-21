@@ -7,92 +7,559 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 상단바 -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/main_toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
-            android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:contentInsetStart="0dp"
-            >
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:background="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="30dp"/>
 
-        <com.example.risingproject.util.StickyScrollView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/asdasd"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@drawable/ic_filter"/>
-
-
-            </LinearLayout>
-
-
-        </com.example.risingproject.util.StickyScrollView>
+    <com.example.risingproject.util.NastedStickyScrollView
+        android:id="@+id/nastedStickyScrollView"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <LinearLayout
-            android:id="@+id/asdasd"
-            android:background="@color/main"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="?attr/actionBarSize"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="가구"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_forward_ios_14"
+                    android:drawablePadding="5dp"
+                    android:text="침실가구"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_forward_ios_14"
+                    android:drawablePadding="5dp"
+                    android:text="토퍼"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_forward_ios_14"
+                    android:drawablePadding="5dp"
+                    android:text="매트리스"/>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager_detail_item_pic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="@+id/viewpager_detail_item_pic"
+                    app:layout_constraintRight_toRightOf="@id/viewpager_detail_item_pic"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewpager_detail_item_pic"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="3dp"
+                    android:background="@drawable/gray_ellipse">
+                    <TextView
+                        android:layout_marginStart="5dp"
+                        android:id="@+id/tv_viewpager_detail_item_pic_nownum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textSize="13dp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_marginEnd="5dp"
+                        android:id="@+id/tv_viewpager_viewpager_detail_item_pic_totalnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textSize="13dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="10dp"
+                android:background="@drawable/bottom_boarder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_company_name"
+                    android:src="@drawable/img_share"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textSize="13dp"
+                    android:text="사구"
+                    android:textStyle="bold"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/tv_detail_item_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="1dp"
+                    android:textSize="17dp"
+                    android:text="사구"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_company_name"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/tv_detail_item_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+                <RatingBar
+                    android:layout_marginTop="1dp"
+                    android:theme="@style/RatingBar"
+                    android:id="@+id/ratingber_detail_item"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="4.5"
+                    android:stepSize="0.5"
+                    android:isIndicator="true"/>
+
+                <TextView
+                    android:layout_marginTop="1dp"
+                    android:textSize="12dp"
+                    android:text="사구"
+                    android:textColor="@color/main"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintStart_toEndOf="@+id/ratingber_detail_item"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_name"
+                    android:id="@+id/tv_detail_item_num_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="6dp"
+                    android:textSize="13dp"
+                    android:text="70%"
+                    android:textStyle="bold"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_num_rate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/tv_detail_item_company_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13dp"
+                    android:text="aasdasdasd"
+                    android:textColor="@color/softGray"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_num_rate"
+                    app:layout_constraintStart_toEndOf="@+id/tv_detail_item_company_percent"
+                    android:id="@+id/tv_detail_item_price_before"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="1dp"
+                    android:textSize="17dp"
+                    android:text="사구"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_company_percent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:id="@+id/tv_detail_item_price_after"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.6" />
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_detail_item_price_after"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_company_percent"
+                    android:padding="3dp"
+                    android:background="@drawable/special_price_bg"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_item_special_price"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="특가"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:padding="10dp"
+                android:background="@drawable/bottom_boarder"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="13dp"
+                        android:text="헤택"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackForText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_item_profit"
+                        android:layout_marginStart="10dp"
+                        android:textSize="13dp"
+                        android:text="헤택"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackForText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="10dp"
+                android:background="@drawable/bottom_boarder"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="13dp"
+                        android:text="배송"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackForText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_detail_item_deliveryFee"
+                            android:textSize="13dp"
+                            android:text="무료배송"
+                            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/blackForText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:layout_marginTop="2dp"
+                            android:id="@+id/tv_detail_item_deliveryWay"
+                            android:textSize="13dp"
+                            android:text="일반배송"
+                            android:textStyle="bold"
+                            android:textColor="#706E6E"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:layout_marginTop="2dp"
+                            android:drawableLeft="@drawable/ic_baseline_check_gray_12"
+                            android:id="@+id/tv_detail_item_extraDeliveryFee"
+                            android:textSize="13dp"
+                            android:text="일반배송"
+                            android:textStyle="bold"
+                            android:textColor="#706E6E"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:padding="5dp"
+                            android:background="@drawable/nemo_bg"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/img_post_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:text="10/05(월)"
+                                android:textStyle="bold"
+                                android:textColor="@color/main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"/>
+
+                            <TextView
+                                android:layout_marginStart="2dp"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:text="도착 예정"
+                                android:textStyle="bold"
+                                android:textColor="@color/blackForText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"/>
+
+                            <TextView
+                                android:layout_marginStart="5dp"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:text="93%"
+                                android:textStyle="bold"
+                                android:textColor="@color/blackForText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_gravity="end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:padding="5dp"
+                            android:background="@drawable/gray_stroke_corner_textview"
+                            android:textSize="13dp"
+                            android:text="묶음배송 상품 추가하기"
+                            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/blackForText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_company"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_company"/>
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:textSize="13dp"
+                    android:text="사구"
+                    android:textStyle="bold"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_company"
+                    android:id="@+id/tv_detail_item_company_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_14"
+                    android:padding="5dp"
+                    android:background="@drawable/gray_solied_btn"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="13dp"
+                    android:text="브랜드 홈"
+                    android:textStyle="bold"
+                    android:textColor="@color/blackForText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/img_detail_ads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="유저들의 스타일링샷"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="95"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <ImageView
+                    android:layout_gravity="end|bottom"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_30"/>
+            </LinearLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager_styling"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_styling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:background="@drawable/bottom_boarder"
+                android:id="@+id/tabs_detail"
+                android:layout_gravity="center"
+                app:tabUnboundedRipple="true"
+                app:tabRippleColor="@null"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:tabIndicatorHeight="3dp"
+                app:tabIndicatorColor="@color/main"
+                app:tabIndicatorFullWidth="false"
+                app:tabSelectedTextColor="@color/main"
+                app:tabTextColor="@color/black"
+                app:tabGravity="center"
+                app:tabMode="auto"
+                app:tabTextAppearance="@style/TabLayoutTextStyle"
+                >
+                <com.google.android.material.tabs.TabItem
+                    android:text="상품정보"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.tabs.TabItem
+                    android:text="리뷰"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.tabs.TabItem
+                    android:text="문의"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.tabs.TabItem
+                    android:text="배송/환불"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.tabs.TabItem
+                    android:text="추천"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.tabs.TabLayout>
+            <ImageView
+                android:scrollY="50dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/test"/>
+        </LinearLayout>
+    </com.example.risingproject.util.NastedStickyScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

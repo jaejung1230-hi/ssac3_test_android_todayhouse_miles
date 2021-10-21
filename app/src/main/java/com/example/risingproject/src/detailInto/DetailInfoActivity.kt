@@ -2,9 +2,12 @@ package com.example.risingproject.src.detailInto
 
 import android.os.Bundle
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.example.risingproject.config.BaseActivity
 import com.example.risingproject.databinding.ActivityDetailInfoBinding
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
+
+
 
 class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetailInfoBinding::inflate), DetailInfoAcitivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +16,18 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         intent.getIntExtra("itemId",-1)
 
         DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",-1))
+        binding.tvDetailItemPriceBefore.paintFlags = android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+
+        binding.nastedStickyScrollView.run {
+            header = binding.tabsDetail
+            stickListener = { _ ->
+                Log.d("LOGGER_TAG", "stickListener")
+            }
+            freeListener = { _ ->
+                Log.d("LOGGER_TAG", "freeListener")
+            }
+        }
+
     }
 
     override fun onGetDetailInfoSuccess(response: GetDetailInfoResponse) {
