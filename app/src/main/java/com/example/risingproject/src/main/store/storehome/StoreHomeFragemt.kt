@@ -68,7 +68,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
         binding.gridviewStorehomeCategory.adapter = StoreHomeCategoryGridViewAdapter(requireContext(),this,storeArr)
         binding.gridviewStorehomeCategory.isExpanded = true
 
-        StoreHomeService(this).tryGetCategoryItem()
+
     }
 
     private fun autoScrollStart(intervalTime: Long) {
@@ -95,6 +95,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
     // 다른 페이지 갔다가 돌아오면 다시 스크롤 시작
     override fun onResume() {
         super.onResume()
+        StoreHomeService(this).tryGetCategoryItem()
         autoScrollStart(intervalTime)
     }
 
@@ -105,6 +106,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
     }
 
     override fun onGetAllItemSuccess(response: GetAllItemResponse) {
+        Log.d("test1",response.toString())
         binding.recyclerTodaysDeal.layoutManager = LinearLayoutManager(requireContext())
         val adapter = TodaysDealAdapter(requireContext(),response.result.subList(0,4))
         binding.recyclerTodaysDeal.adapter = adapter
@@ -123,6 +125,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
                     }
                 }
             }
+            recordList.reverse()
             binding.recyclerRecord.layoutManager = linearLayoutManager
             binding.recyclerRecord.adapter = StoreHomeRecordAdapter(requireContext(),recordList)
         }

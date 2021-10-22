@@ -70,6 +70,7 @@ class EmailLoginActivity : BaseActivity<ActivityLoginEmailBinding>(ActivityLogin
         else{
             val editor = ApplicationClass.sSharedPreferences.edit()
             editor.putString(ApplicationClass.X_ACCESS_TOKEN, response.result.jwt)
+            editor.putInt(ApplicationClass.LOG_IN_USER, response.result.userId)
             editor.commit()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_boarder"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints" >
+        <TextView
+            android:id="@+id/toolbar_signup_title"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="리뷰쓰기">
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:paddingHorizontal="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kind"
+                    android:id="@+id/card_img_review"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp">
+                    <ImageView
+                        android:src="@color/main"
+                        android:scaleType="fitXY"
+                        android:id="@+id/img_selected_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </com.google.android.material.card.MaterialCardView>
+                <LinearLayout
+                    android:paddingHorizontal="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_seleted_item_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="@color/blackForText"
+                        android:text="00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+                        />
+                    <TextView
+                        android:layout_marginTop="3dp"
+                        android:textSize="13dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="@color/main"
+                        android:text="포토250P"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginVertical="20dp"
+                android:textSize="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="별점을 눌러 만족도를 알려주세요 :D"
+                />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:text="만족도"
+                    />
+
+                <LinearLayout
+                    android:paddingHorizontal="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RatingBar
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:theme="@style/RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textSize="15dp"
+                        android:textColor="@color/blackForText"
+                        android:text="만족도"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="상품사진을 올려주세요"
+                    />
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="(선택)"
+                    />
+
+                <ImageView
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_give_point"
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/blackForText"
+                android:textSize="11dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘의집에 올렸던 사진에서 고르거나 새로 업로드 해주세요.\n상품과 관련 없거나 부적합한 사진을 리뷰에 등록하시는 경우, 사전경고 없이 포인트\n 회수와 함께 사진이 삭제될 수 있습니다"
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginVertical="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_kind"
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+                <ImageView
+                    android:src="@drawable/img_upload_pic"
+                    android:scaleType="fitXY"
+                    android:id="@+id/img_upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginVertical="20dp"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="리뷰를 등록해주세요"
+                    />
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    android:gravity="end"
+                    android:layout_marginVertical="20dp"
+                    android:textSize="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+
+                <TextView
+                    android:gravity="end"
+                    android:layout_marginVertical="20dp"
+                    android:textSize="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="자 / 최소 20자"
+                    />
+            </LinearLayout>
+
+            <EditText
+                android:gravity="top"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:hint="이 상품을 사용하면서 느꼈던 장점과 단점을 솔직하게\n알려주세요."
+                android:background="@drawable/gray_stroke_textview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+            <TextView
+                android:layout_marginVertical="20dp"
+                android:textSize="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="직접 상품을 사용하고 작성하는 리뷰인가요?"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/check_box"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:button="@null"
+                    android:background="@drawable/custom_round_checkbox" />
+                <TextView
+                    android:textColor="@color/blackForText"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:text="네, 그리고"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="@color/main"
+                    android:gravity="center"
+                    android:text="오늘의집 리뷰 정책"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:gravity="center"
+                    android:textColor="@color/blackForText"
+                    android:text="에도 동의합니다."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:text="*작성된 리뷰는 심사한 뒤 후 등록 및 포인트 지급을 진행합니다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:padding="15dp"
+                android:backgroundTint="@color/main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="저장하기"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

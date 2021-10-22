@@ -11,6 +11,6 @@ data class ResultItemUseFilter (
     @SerializedName("originalPrice") val originalPrice: Int,
     @SerializedName("percenttage") val percenttage: Int,
     @SerializedName("deliveryFee") val deliveryFee: String,
-    @SerializedName("numOfReviews") val numOfReviews: Int?,
+    @SerializedName("numOfReview") val numOfReviews: Int?,
     @SerializedName("reviewRate") val reviewRate: Double
     )

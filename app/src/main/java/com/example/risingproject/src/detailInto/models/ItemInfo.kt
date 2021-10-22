@@ -1,7 +1,10 @@
 package com.example.risingproject.src.detailInto.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ItemInfo(
     @SerializedName("itemId") val itemId: Int,
     @SerializedName("companyName") val companyName: String,
@@ -19,4 +22,4 @@ data class ItemInfo(
     @SerializedName("impossiblePlace") val impossiblePlace: String?,
     @SerializedName("extraDeliveryFee") val extraDeliveryFee: String?,
     @SerializedName("detailedImage") val detailedImage: String?,
-)
+): Parcelable

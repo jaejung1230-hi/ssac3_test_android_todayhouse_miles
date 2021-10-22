@@ -262,7 +262,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
 
     override fun onGetCategoryItemUseFilterSuccess(response: GetCategoryItemUseFilterResponse) {
         dismissLoadingDialog()
-        Log.d("test",response.toString())
+        Log.d("test1",response.toString())
         binding.gridviewStorecategoryFilter.adapter = StoreCategoryCategoryFilterGridViewAdapter(requireContext(),response.result)
         binding.gridviewStorecategoryFilter.isExpanded = true
     }

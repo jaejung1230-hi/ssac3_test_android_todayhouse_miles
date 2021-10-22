@@ -33,7 +33,7 @@ class StoreCategoryService(val view : StoreCategoryFragmentView) {
             getCategoryItemUseFilterRequest.pattern,getCategoryItemUseFilterRequest.brand,getCategoryItemUseFilterRequest.energyEfficiency,getCategoryItemUseFilterRequest.type,
             getCategoryItemUseFilterRequest.design).enqueue(object : Callback<GetCategoryItemUseFilterResponse> {
             override fun onResponse(call: Call<GetCategoryItemUseFilterResponse>, response: Response<GetCategoryItemUseFilterResponse>) {
-                Log.d("test",response.toString())
+                Log.d("test1",response.toString())
                 Log.d("test",response.message().toString())
                 Log.d("test",response.raw().toString())
                 view.onGetCategoryItemUseFilterSuccess(response.body() as GetCategoryItemUseFilterResponse)

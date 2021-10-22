@@ -34,12 +34,18 @@ class TodaysDealAdapter(private val context: Context, private val items: List<Re
         lateinit var currentVal : String
 
 
+        val now: Long = System.currentTimeMillis()
+        val date = Date(now)
+        val dateFormatH = SimpleDateFormat("HH", Locale("ko", "KR"))
+        val dateFormatM = SimpleDateFormat("mm", Locale("ko", "KR"))
+        val dateFormatS = SimpleDateFormat("ss", Locale("ko", "KR"))
+        val H = dateFormatH.format(date).toLong() * 1000 * 60 * 60
+        val M = dateFormatM.format(date).toLong() * 1000 * 60
+        val S = dateFormatS.format(date).toLong() * 1000
 
-        var timer = 86400000 - System.currentTimeMillis()
 
         init {
-            Log.d("timer",timer.toString())
-            timer1 = object : CountDownTimer(146000000, 1000) {
+            timer1 = object : CountDownTimer(86400000-(H+M+S), 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     var seconds = (millisUntilFinished / 1000).toInt()
                     val hours = seconds / (60 * 60)

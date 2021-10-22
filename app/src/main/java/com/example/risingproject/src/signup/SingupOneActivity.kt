@@ -253,6 +253,7 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
         dismissLoadingDialog()
         val editor = ApplicationClass.sSharedPreferences.edit()
         editor.putString(ApplicationClass.X_ACCESS_TOKEN, response.result.jwt)
+        editor.putInt(ApplicationClass.LOG_IN_USER, response.result.userId)
         editor.commit()
         Log.d("GetSign","jwt : ${ApplicationClass.sSharedPreferences.getString(ApplicationClass.X_ACCESS_TOKEN,null)}")
         Log.d("GetSign","성공 여부 : ${response.isSuccess}")

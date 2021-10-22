@@ -1,5 +1,6 @@
 package com.example.risingproject.src.detailInto
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.example.risingproject.config.BaseActivity
@@ -18,6 +19,8 @@ import com.example.risingproject.src.main.store.storehome.models.GetCategoryItem
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
 import com.example.risingproject.src.main.store.storehome.util.StoreCategoryCategoryFilterGridViewAdapter
 import com.example.risingproject.src.main.store.storehome.util.StoreHomeRecordAdapter
+import com.example.risingproject.src.review.WirteReviewActivity
+import com.example.risingproject.util.GlobalFunctions
 import com.google.android.material.tabs.TabLayout
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
@@ -58,6 +61,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
     override fun onStart() {
         super.onStart()
         intent.getIntExtra("itemId",-1)
+        GlobalFunctions.setRecordPref(intent.getIntExtra("itemId",-1).toString())
         DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",-1))
     }
 
@@ -118,6 +122,12 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         binding.tvReviewCount.text = response.result[3].totalReviewNum[0].reviewNum.toString()
         binding.tvItemRateBig.text =  response.result[2].totalReivewRate[0].avgRate.toString()
         binding.ratingbarBig.rating = response.result[2].totalReivewRate[0].avgRate.toFloat()
+
+        binding.btnWriteReview.setOnClickListener {
+            val intent = Intent(this, WirteReviewActivity::class.java)
+            intent.putExtra("selectedItem",response.result[1].itemInfo[0])
+            startActivity(intent)
+        }
 
         var count5 = 0; var count4 = 0; var count3 = 0; var count2 = 0; var count1 = 0
 

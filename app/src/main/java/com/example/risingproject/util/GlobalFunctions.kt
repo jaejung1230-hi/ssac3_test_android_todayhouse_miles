@@ -56,14 +56,26 @@ object GlobalFunctions {
         }
     }
 
-    fun setRecordPref(values: ArrayList<String>) {
+    fun setRecordPref(value: String) {
         val editor = ApplicationClass.sSharedPreferences.edit()
-
-        val a = JSONArray()
-        for (i in 0 until values.size) {
-            a.put(values[i])
+        val now = getRecordPref()
+        if (now != null) {
+            for(i in now){
+               if(i == value){
+                   now.remove(i)
+                   break
+               }
+            }
         }
-        if (values.isNotEmpty()) {
+        now?.add(value)
+        if(now?.size!! > 8){
+            now?.removeAt(0)
+        }
+        val a = JSONArray()
+        for (i in 0 until now.size) {
+            a.put(now[i])
+        }
+        if (now.isNotEmpty()) {
             editor.putString("record", a.toString())
         } else {
             editor.putString("record", null)

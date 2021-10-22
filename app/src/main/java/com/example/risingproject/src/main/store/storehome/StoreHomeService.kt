@@ -13,14 +13,13 @@ class StoreHomeService(val view : StoreHomeFragemt) {
         val storeCategoryRetrofitInterface = ApplicationClass.sRetrofit.create(StoreHomeRetrofitInterface::class.java)
         storeCategoryRetrofitInterface.getCategoryItem().enqueue(object : Callback<GetAllItemResponse> {
             override fun onResponse(call: Call<GetAllItemResponse>, response: Response<GetAllItemResponse>) {
-                Log.d("test",response.toString())
+                Log.d("test1",response.toString())
                 view.onGetAllItemSuccess(response.body() as GetAllItemResponse)
             }
 
             override fun onFailure(call: Call<GetAllItemResponse>, t: Throwable) {
                 view.onGetAllItemFailure(t.message ?: "통신 오류")
             }
-
         })
     }
 }

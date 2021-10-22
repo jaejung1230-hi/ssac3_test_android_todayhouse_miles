@@ -108,12 +108,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:background="@color/white"
+        <com.example.risingproject.util.NestedScrollableHost
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recycler_record"
-            android:layout_marginBottom="10dp"/>
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recycler_record"
+                android:layout_marginBottom="10dp"/>
+        </com.example.risingproject.util.NestedScrollableHost>
+
 
         <TextView
             app:layout_constraintTop_toTopOf="parent"

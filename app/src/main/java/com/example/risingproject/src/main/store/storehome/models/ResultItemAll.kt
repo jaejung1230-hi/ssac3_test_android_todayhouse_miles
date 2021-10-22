@@ -6,10 +6,10 @@ data class ResultItemAll (
     @SerializedName("itemId") val itemId: Int,
     @SerializedName("itemName") val itemName: String,
     @SerializedName("companyName") val companyName: String,
-    @SerializedName("sale") val sale: Int,
+    @SerializedName("price") val sale: Int,
     @SerializedName("percenttage") val percenttage: Int,
     @SerializedName("reviewRate") val reviewRate: Double,
-    @SerializedName("numOfReviews") val numOfReviews: Int?,
+    @SerializedName("numOfreview") val numOfReviews: Int?,
     @SerializedName("mainPhoto") val mainPic: String?,
-    @SerializedName("salePrice") val salePrice: Int,
+    @SerializedName("sale") val salePrice: Int,
     )
