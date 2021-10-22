@@ -20,19 +20,32 @@
             app:layout_scrollFlags="scroll|enterAlways">
 
             <androidx.appcompat.widget.Toolbar
+                android:background="@color/white"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                />
+                app:contentInsetStart="0dp"
+                >
+
+                <TextView
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:id="@+id/toolbar_item_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="이름">
+
+                </TextView>
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:layout_gravity="bottom"
-        android:background="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
 
     <com.example.risingproject.util.NastedStickyScrollView
         android:id="@+id/nastedStickyScrollView"
@@ -236,6 +249,7 @@
                     app:layout_constraintGuide_percent="0.6" />
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_marginStart="5dp"
                     app:layout_constraintStart_toEndOf="@+id/tv_detail_item_price_after"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_item_company_percent"
@@ -503,9 +517,10 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager_styling"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="350dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingBottom="10dp"
                 android:id="@+id/recycler_styling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -554,12 +569,434 @@
                     android:layout_height="wrap_content"/>
             </com.google.android.material.tabs.TabLayout>
             <ImageView
-                android:scrollY="50dp"
+                android:id="@+id/img_explain"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/test"/>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+            <LinearLayout
+                android:id="@+id/linear_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="리뷰"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_review_count"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="95"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="리뷰 쓰기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="10dp"
+                android:background="@drawable/nemo_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/tv_item_rate_big"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    />
+
+                <RatingBar
+                    android:id="@+id/ratingbar_big"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_item_rate_big"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:theme="@style/RatingBar"
+                    android:numStars="5"
+                    android:rating="4.5"
+                    android:stepSize="0.5"
+                    android:isIndicator="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_percent="0.5"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:padding="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/guideline5"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_5point"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="5점"
+                            />
+                        <ProgressBar
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="5dp"
+                            android:progressDrawable="@drawable/progressbar_custom"
+                            android:id="@+id/progressBar_5point"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_now_step"
+                            android:layout_width="0dp"
+                            android:layout_height="7dp"/>
+                        <TextView
+                            android:id="@+id/tv_5point_count"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_4point"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="4점"
+                            />
+                        <ProgressBar
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="5dp"
+                            android:progressDrawable="@drawable/progressbar_custom"
+                            android:id="@+id/progressBar_4point"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_now_step"
+                            android:layout_width="0dp"
+                            android:layout_height="7dp"/>
+                        <TextView
+                            android:id="@+id/tv_4point_count"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_3point"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="3점"
+                            />
+                        <ProgressBar
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="5dp"
+                            android:progressDrawable="@drawable/progressbar_custom"
+                            android:id="@+id/progressBar_3point"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_now_step"
+                            android:layout_width="0dp"
+                            android:layout_height="7dp"/>
+                        <TextView
+                            android:id="@+id/tv_3point_count"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_2point"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="2점"
+                            />
+                        <ProgressBar
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="5dp"
+                            android:progressDrawable="@drawable/progressbar_custom"
+                            android:id="@+id/progressBar_2point"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_now_step"
+                            android:layout_width="0dp"
+                            android:layout_height="7dp"/>
+                        <TextView
+                            android:id="@+id/tv_2point_count"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_1point"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="1점"
+                            />
+                        <ProgressBar
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="5dp"
+                            android:progressDrawable="@drawable/progressbar_custom"
+                            android:id="@+id/progressBar_1point"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_now_step"
+                            android:layout_width="0dp"
+                            android:layout_height="7dp"/>
+                        <TextView
+                            android:id="@+id/tv_1point_count"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_review_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:backgroundTint="@color/main"
+                android:text="리뷰 더보기"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/linear_q"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="문의"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:text="95"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <ImageView
+                    android:layout_gravity="end|bottom"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_30"/>
+            </LinearLayout>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/linear_post"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="배송/교환/환불"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <ImageView
+                    android:layout_gravity="end|bottom"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_30"/>
+            </LinearLayout>
+
+            <View
+                android:background="#f7f8fa"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <TextView
+                android:id="@+id/linear_same"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="10dp"
+                android:text="비슷한 상품"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.example.risingproject.util.ExpandableHeightGridView
+                android:columnWidth="190dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:background="@color/white"
+                android:numColumns="2"
+                android:id="@+id/gridview_same_categoty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/gray_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    android:padding="10dp"
+                    android:text="비슷한 상품 더보기"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"/>
         </LinearLayout>
     </com.example.risingproject.util.NastedStickyScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_bookmark"/>
+        <Button
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/main"
+            android:text="구매하기"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

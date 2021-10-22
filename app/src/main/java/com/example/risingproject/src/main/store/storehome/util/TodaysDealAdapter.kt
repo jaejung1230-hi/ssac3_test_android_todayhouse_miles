@@ -39,7 +39,7 @@ class TodaysDealAdapter(private val context: Context, private val items: List<Re
 
         init {
             Log.d("timer",timer.toString())
-            timer1 = object : CountDownTimer(10000, 1000) {
+            timer1 = object : CountDownTimer(146000000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     var seconds = (millisUntilFinished / 1000).toInt()
                     val hours = seconds / (60 * 60)

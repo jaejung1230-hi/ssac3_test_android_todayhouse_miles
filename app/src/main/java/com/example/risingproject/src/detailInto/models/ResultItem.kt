@@ -7,5 +7,5 @@ data class ResultItem (
     @SerializedName("itemInfo") val itemInfo: List<ItemInfo>,
     @SerializedName("totalReivewRate") val totalReivewRate: List<TotalReivewRate>,
     @SerializedName("totalReviewNum") val totalReviewNum: List<TotalReviewNum>,
-    @SerializedName("reviewList") val reviewList: List<Any>,
+    @SerializedName("reviewList") val reviewList: List<reviewList>,
     )
