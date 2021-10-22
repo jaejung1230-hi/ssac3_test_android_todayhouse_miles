@@ -94,7 +94,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         binding.tvDetailItemPriceBefore.text = t_dec_up.format(response.result[1].itemInfo[0].price)+"원"
         binding.tvDetailItemPriceAfter.text = t_dec_up.format(response.result[1].itemInfo[0].sale)+"원"
 
-        if(response.result[1].itemInfo[0].percenttage >= 50){
+        if(response.result[1].itemInfo[0].percenttage!! >= 50){
             binding.tvItemSpecialPrice.visibility = View.VISIBLE
         }
 

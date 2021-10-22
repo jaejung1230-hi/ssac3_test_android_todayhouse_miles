@@ -88,6 +88,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_check_rate"
                 android:layout_marginVertical="20dp"
                 android:textSize="17dp"
                 android:layout_width="match_parent"
@@ -123,6 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <RatingBar
+                        android:id="@+id/ratingbar_point"
                         android:numStars="5"
                         android:stepSize="1"
                         android:theme="@style/RatingBar"
@@ -132,7 +134,7 @@
                         android:layout_marginEnd="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:id="@+id/tv_rating"
                         android:textSize="15dp"
                         android:textColor="@color/blackForText"
                         android:text="만족도"
@@ -177,7 +179,7 @@
                 android:textSize="11dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘의집에 올렸던 사진에서 고르거나 새로 업로드 해주세요.\n상품과 관련 없거나 부적합한 사진을 리뷰에 등록하시는 경우, 사전경고 없이 포인트\n 회수와 함께 사진이 삭제될 수 있습니다"
+                android:text="오늘의집에 올렸던 사진에서 고르거나 새로 업로드 해주세요.\n상품과 관련 없거나 부적합한 사진을 리뷰에 등록하시는 경우, 사전경고 없이 포인트\n회수와 함께 사진이 삭제될 수 있습니다"
                 />
 
             <com.google.android.material.card.MaterialCardView
@@ -202,6 +204,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_check_length"
                     android:layout_marginVertical="20dp"
                     android:textSize="17dp"
                     android:layout_width="wrap_content"
@@ -219,6 +222,7 @@
                     android:layout_height="0dp"/>
 
                 <TextView
+                    android:id="@+id/tv_edit_length"
                     android:gravity="end"
                     android:layout_marginVertical="20dp"
                     android:textSize="12dp"
@@ -237,6 +241,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/edit_comment"
                 android:gravity="top"
                 android:padding="5dp"
                 android:textSize="15dp"
@@ -246,6 +251,7 @@
                 android:layout_height="200dp"/>
 
             <TextView
+                android:id="@+id/tv_check_box"
                 android:layout_marginVertical="20dp"
                 android:textSize="17dp"
                 android:layout_width="wrap_content"
@@ -262,7 +268,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
-                    android:id="@+id/check_box"
+                    android:id="@+id/check_box_agree"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:button="@null"
@@ -271,7 +277,7 @@
                     android:textColor="@color/blackForText"
                     android:layout_marginStart="5dp"
                     android:gravity="center"
-                    android:text="네, 그리고"
+                    android:text="네, 그리고 "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -296,6 +302,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/btn_post_review"
                 android:padding="15dp"
                 android:backgroundTint="@color/main"
                 android:layout_width="match_parent"
