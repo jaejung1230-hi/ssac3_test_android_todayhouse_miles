@@ -118,3 +118,33 @@ API중 카테고리별 검색 API를 추가로 적용하였으며 전체 카테�
 상세화면 레이아웃을 만드는 것에 성공하였고 상세화면 API와의 연동 또한 성공하였다. 이제 이 둘을 연결만 시켜주면 된다.
 내일은 상세페이지 완전 구현 리뷰 페이지 구현과 리뷰등록 API연동을 완료할 생각이다.
 이것이 완료되면 사진과 관련된 기능을 구현할 예정이다.
+
+10/22 ~ 10/23
+![initial](https://user-images.githubusercontent.com/66465380/138565965-821263ba-dc8d-4e5b-8ad6-2e7be797208e.png)
+![initial](https://user-images.githubusercontent.com/66465380/138565977-def205c1-fe09-41ae-ade2-5483c972e959.png)
+![initial](https://user-images.githubusercontent.com/66465380/138565986-2404dc89-0bec-43e8-899a-4ff2c2bde44e.png)
+
+아이템 클릭시 상세정보가 보이는 액티비티를 구현하였다.
+레트로핏을 통해 받아온 모든 정보를 화면에 뿌려주며 list형태로 리뷰도 얻어와 각 점수 구간의 비율을 계산 프로그레스바에 표시될 수 있게 하였다.
+또한 비슷한상품의 경우 같은 카테고리의 아이템 4개를 보여주도록 하였다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138565998-8c2071fc-7bff-4c7e-a083-44341d91723d.png)
+
+리뷰를 등록하는 화면을 만들었다. 또한 서버의 리뷰등록API와 연동하여 실제 서버에 리뷰가 올라갈 수 있도록 하였다. 
+이때 이미지의 경우 서버쪽에 이슈가 있어 FireBaseStorage를 연결한 후 이미지 자체는 FireBaseStorage에 저장, 그후 저장된 url을 서버에 넘겨주고, 넘겨받아 glide로 띄워줄 수 있도록 하였다.
+
+
+![initial](https://user-images.githubusercontent.com/66465380/138566016-bbfce4c2-5b02-49db-bf3a-4fcff857c55d.png)
+
+기본화면 레이아웃을 수정해 디테일을 좀 더 얻고 SharedPreferences에 탐색한 아이템의 id를 8개까지 gson을 통해 저장한다. 
+후에 저장한 아이템 id를 이용하여 최근 본 상품을 실제로 볼 수 있게 하였다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138566217-273a11fb-ef3b-40c4-b18b-6e57c9ae482d.png)
+
+또한 필터를 통해 아이템을 탐색할 때, 페이징을 통해 2개씩 불러오도록 하였다.(2개인 이유: 저장된 아이템의 수가 적기때문에)
+
+![initial](https://user-images.githubusercontent.com/66465380/138566032-4c60587c-60e8-48aa-9f26-8462287abdbd.png)
+![initial](https://user-images.githubusercontent.com/66465380/138566058-9a3bb308-8bfa-48d8-950d-cad82dd92d3a.png)
+
+홈화면을 구현하였다. 레이아웃을 중심으로 진행했으며 이제 사진을 올리는 핵심기능을 구현할 예정이다.
+
