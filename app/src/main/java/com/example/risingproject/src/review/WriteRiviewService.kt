@@ -10,9 +10,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class WriteReviewService(val view : WriteReviewActivityView) {
-    fun tryPostReview(userId : Int, body: MultipartBody.Part, writeReviewRequest: WriteReviewRequest){
+    fun tryPostReview(userId : Int,  writeReviewRequest: WriteReviewRequest){
         val signupOneRetrofitInterface = ApplicationClass.sRetrofit.create(WriteReviewRetrofitInterface::class.java)
-        signupOneRetrofitInterface.postReview(userId, body, writeReviewRequest).enqueue(object : Callback<BaseResponse> {
+        signupOneRetrofitInterface.postReview(userId, writeReviewRequest).enqueue(object : Callback<BaseResponse> {
 
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 Log.d("testaa",response.body()?.message.toString())

@@ -28,6 +28,9 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
     object FilterBoolean{
         var arr = arrayListOf<ArrayList<Boolean>>()
     }
+
+    var pageNo = 1
+    var pageRow = 2
     var categoryNum by Delegates.notNull<Int>()
     var underarr = listOf<InfoForUnderFilter>()
     var arr2 = listOf<String>()
@@ -139,6 +142,9 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
                 )
         }
         StoreCategoryService(this).tryGetCategoryItem(GetCategoryItemRequest(categoryNum))
+        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,null,null,null,null,null,null,null,null,pageNo,pageRow)
+        StoreCategoryService(this).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
+        showLoadingDialog(requireContext())
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -213,6 +219,10 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             freeListener = { _ ->
                 Log.d("LOGGER_TAG", "freeListener")
             }
+        }
+
+        binding.gridviewStorecategoryFilter.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+
         }
 
     }
@@ -328,7 +338,8 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
                 else -> {colorCode = "ETC"}
             }
         }
-        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,ripperCode,colorCode,null,null,null,null,null,null)
+        pageNo = 1
+        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,ripperCode,colorCode,null,null,null,null,null,null, pageNo, pageRow)
         StoreCategoryService(this).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
         showLoadingDialog(requireContext())
     }

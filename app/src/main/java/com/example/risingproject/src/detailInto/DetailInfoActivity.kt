@@ -1,32 +1,34 @@
 package com.example.risingproject.src.detailInto
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import com.example.risingproject.config.BaseActivity
-import com.example.risingproject.databinding.ActivityDetailInfoBinding
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import android.view.Menu
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.core.view.marginRight
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
+import com.example.risingproject.databinding.ActivityDetailInfoBinding
 import com.example.risingproject.src.detailInto.util.*
-import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemRequest
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
-import com.example.risingproject.src.main.store.storehome.util.StoreCategoryCategoryFilterGridViewAdapter
-import com.example.risingproject.src.main.store.storehome.util.StoreHomeRecordAdapter
 import com.example.risingproject.src.review.WirteReviewActivity
 import com.example.risingproject.util.GlobalFunctions
 import com.google.android.material.tabs.TabLayout
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
-class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetailInfoBinding::inflate), DetailInfoAcitivityView {
-
+class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetailInfoBinding::inflate), DetailInfoAcitivityView, FilterItemClick {
+    object SelectedNum{
+        var selectedNum = 0
+    }
     val tempItmePic = listOf<Int>(R.drawable.temp_item_1, R.drawable.temp_item_2, R.drawable.temp_item_3, R.drawable.temp_item_4,
         R.drawable.temp_item_5, R.drawable.temp_item_6, R.drawable.temp_item_7)
 
@@ -63,9 +65,12 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         intent.getIntExtra("itemId",-1)
         GlobalFunctions.setRecordPref(intent.getIntExtra("itemId",-1).toString())
         DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",-1))
+        showLoadingDialog(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onGetDetailInfoSuccess(response: GetDetailInfoResponse) {
+        dismissLoadingDialog()
         Log.d("DetailInfo", response.result[0].photoImage.toString())
         Log.d("DetailInfo", response.result[1].itemInfo.toString())
         Log.d("DetailInfo", response.result[2].totalReivewRate.toString())
@@ -89,7 +94,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         binding.toolbarItemTitle.text = response.result[1].itemInfo[0].itemName
         binding.tvDetailItemName.text = response.result[1].itemInfo[0].itemName
         binding.ratingberDetailItem.rating = response.result[2].totalReivewRate[0].avgRate.roundToInt().toFloat()
-        binding.tvDetailItemNumRate.text = response.result[2].totalReivewRate[0].avgRate.toString()
+        binding.tvDetailItemNumRate.text = String.format("%.1f", response.result[2].totalReivewRate[0].avgRate)
         binding.tvDetailItemCompanyPercent.text = response.result[1].itemInfo[0].percenttage.toString()+"%"
         binding.tvDetailItemPriceBefore.text = t_dec_up.format(response.result[1].itemInfo[0].price)+"원"
         binding.tvDetailItemPriceAfter.text = t_dec_up.format(response.result[1].itemInfo[0].sale)+"원"
@@ -106,22 +111,39 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
             binding.tvDetailItemExtraDeliveryFee.visibility = View.GONE
         }
 
-        binding.viewpagerStyling.adapter = PicReViewPagerAdapter(response.result[4].reviewList)
-        binding.viewpagerStyling.setPadding(60, 60, 60, 60)
+        val dpValue = 54
+        val d = resources.displayMetrics.density
+        val margin = (dpValue * d).toInt()
+
+        binding.viewpagerStyling.adapter = PicReViewPagerAdapter(this,response.result[4].reviewList)
+        binding.viewpagerStyling.clipToPadding = false
+        binding.viewpagerStyling.setPadding(margin, 0, margin, 0)
         binding.viewpagerStyling.offscreenPageLimit=3
         binding.viewpagerStyling.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
         var transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(30))
+        transform.addTransformer(MarginPageTransformer(margin/2))
         binding.viewpagerStyling.setPageTransformer(transform)
+
+
 
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerStyling.layoutManager = linearLayoutManager
-        binding.recyclerStyling.adapter = HorizontalReviewsAdapter(this,response.result[4].reviewList)
+        binding.recyclerStyling.adapter = HorizontalReviewsAdapter(this,response.result[4].reviewList, this)
 
         binding.tvReviewCount.text = response.result[3].totalReviewNum[0].reviewNum.toString()
-        binding.tvItemRateBig.text =  response.result[2].totalReivewRate[0].avgRate.toString()
+        binding.tvItemRateBig.text =  String.format("%.1f", response.result[2].totalReivewRate[0].avgRate)
         binding.ratingbarBig.rating = response.result[2].totalReivewRate[0].avgRate.toFloat()
+
+        binding.viewpagerStyling.apply {
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    SelectedNum.selectedNum = position
+                    binding.recyclerStyling.adapter!!.notifyDataSetChanged()
+                }
+            })
+        }
 
         binding.btnWriteReview.setOnClickListener {
             val intent = Intent(this, WirteReviewActivity::class.java)
@@ -144,43 +166,61 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         binding.tabsDetail.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position){
-                    0-> { binding.nastedStickyScrollView.smoothScrollTo(0, binding.imgExplain.top)}
-                    1-> {binding.nastedStickyScrollView.smoothScrollTo(0, binding.linearReview.top)}
-                    2-> {binding.nastedStickyScrollView.smoothScrollTo(0, binding.linearQ.top)}
-                    3-> {binding.nastedStickyScrollView.smoothScrollTo(0, binding.linearPost.top)}
-                    4-> {binding.nastedStickyScrollView.smoothScrollTo(0, binding.linearSame.top)}
+                    0-> { binding.nastedStickyScrollView.scrollTo(0, binding.imgExplain.top)}
+                    1-> {binding.nastedStickyScrollView.scrollTo(0, binding.linearReview.top)}
+                    2-> {binding.nastedStickyScrollView.scrollTo(0, binding.linearQ.top)}
+                    3-> {binding.nastedStickyScrollView.scrollTo(0, binding.linearPost.top)}
+                    4-> {binding.nastedStickyScrollView.scrollTo(0, binding.linearSame.top)}
                 }
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+        binding.nastedStickyScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            Log.d("scroll", oldScrollY.toString())
+            Log.d("scroll", scrollY.toString())
+            Log.d("scroll",  binding.imgExplain.top.toString())
+            Log.d("scroll",  binding.linearReview.top.toString())
+            Log.d("scroll",  binding.linearQ.top.toString())
+            Log.d("scroll",  binding.linearPost.top.toString())
+            Log.d("scroll",  binding.linearSame.top.toString())
 
+            if(scrollY == binding.linearSame.top){
+                    binding.tabsDetail.getTabAt(4)?.select()
+            }
+            else if(scrollY == binding.linearPost.top){
+                    binding.tabsDetail.getTabAt(3)?.select()
+            }
+            else if(scrollY == binding.linearQ.top){
+                binding.tabsDetail.getTabAt(2)?.select()
+            }
+            else if(scrollY == binding.linearReview.top){
+                binding.tabsDetail.getTabAt(1)?.select()
+            }
+            else if(scrollY == binding.imgExplain.top){
+                binding.tabsDetail.getTabAt(0)?.select()
+            }
+
+        }
         if(count5 != 0){
             binding.tv5pointCount.text = count5.toString()
-            binding.progressBar5point.progress = (count5/response.result[3].totalReviewNum[0].reviewNum)*100
+            binding.progressBar5point.progress = ((count5.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
         if(count4 != 0){
             binding.tv4pointCount.text = count4.toString()
-            binding.progressBar4point.progress = (count4/response.result[3].totalReviewNum[0].reviewNum)*100
+            binding.progressBar4point.progress = ((count4.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
         if(count3 != 0){
             binding.tv3pointCount.text = count3.toString()
-            binding.progressBar3point.progress = (count3/response.result[3].totalReviewNum[0].reviewNum)*100
+            binding.progressBar3point.progress = ((count3.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
         if(count2 != 0){
             binding.tv2pointCount.text = count2.toString()
-            binding.progressBar2point.progress = (count2/response.result[3].totalReviewNum[0].reviewNum)*100
+            binding.progressBar2point.progress = ((count2.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
         if(count1 != 0){
             binding.tv1pointCount.text = count1.toString()
-            binding.progressBar1point.progress = (count1/response.result[3].totalReviewNum[0].reviewNum)*100
+            binding.progressBar1point.progress = ((count1.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
 
         if(response.result[4].reviewList.size > 3){
@@ -196,6 +236,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
 
     override fun onGetDetailInfoFailure(message: String) {
         Log.d("DetailInfo",message)
+        dismissLoadingDialog()
     }
 
     override fun onGetCategoryItemSuccess(response: GetCategoryItemResponse) {
@@ -213,11 +254,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         Log.d("DetailInfo",message)
     }
 
-
-    fun View.absY(): Int
-    {
-        val location = IntArray(2)
-        this.getLocationOnScreen(location)
-        return location[1]
+    override fun getSelectedItem(pos: Int) {
+        binding.viewpagerStyling.currentItem = pos
     }
 }

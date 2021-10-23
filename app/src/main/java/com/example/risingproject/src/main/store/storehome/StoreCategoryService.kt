@@ -33,15 +33,15 @@ class StoreCategoryService(val view : StoreCategoryFragmentView) {
             getCategoryItemUseFilterRequest.pattern,getCategoryItemUseFilterRequest.brand,getCategoryItemUseFilterRequest.energyEfficiency,getCategoryItemUseFilterRequest.type,
             getCategoryItemUseFilterRequest.design).enqueue(object : Callback<GetCategoryItemUseFilterResponse> {
             override fun onResponse(call: Call<GetCategoryItemUseFilterResponse>, response: Response<GetCategoryItemUseFilterResponse>) {
-                Log.d("test1",response.toString())
-                Log.d("test",response.message().toString())
-                Log.d("test",response.raw().toString())
+                Log.d("test2",response.toString())
+                Log.d("test2",response.message().toString())
+                Log.d("test2",response.raw().toString())
                 view.onGetCategoryItemUseFilterSuccess(response.body() as GetCategoryItemUseFilterResponse)
             }
 
             override fun onFailure(call: Call<GetCategoryItemUseFilterResponse>, t: Throwable) {
-                Log.d("test",t.toString())
-                Log.d("test",t.message.toString())
+                Log.d("test2",t.toString())
+                Log.d("test2",t.message.toString())
                 view.onGetCategoryItemUseFilterFailure(t.message ?: "통신 오류")
             }
 

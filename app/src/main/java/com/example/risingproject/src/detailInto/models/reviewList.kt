@@ -7,7 +7,7 @@ data class reviewList(
     @SerializedName("reviewId") val reviewId: Int,
     @SerializedName("userName") val userName: String,
     @SerializedName("reviewAvg") val reviewAvg: Double,
-    @SerializedName("concat(R.createdAt, '오늘의집 구매')") val concat: String,
+    @SerializedName("uploadTime") val concat: String,
     @SerializedName("photo") val photo: String?,
     @SerializedName("context") val context: String,
     @SerializedName("helpedNum") val helpedNum: Double,

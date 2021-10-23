@@ -18,6 +18,9 @@ import com.example.risingproject.databinding.ActivityWriteReviewBinding
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import com.example.risingproject.src.detailInto.models.ItemInfo
 import com.example.risingproject.src.review.models.WriteReviewRequest
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -34,9 +37,13 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
     private val GET_GALLERY_IMAGE = 200
     private var img_path : String? = null
     private var imageName : String? = null
+    private lateinit var storage : FirebaseStorage
+    var file : Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        storage = FirebaseStorage.getInstance()
 
         val selectedItem = intent?.getParcelableExtra<ItemInfo?>("selectedItem")
         binding.tvSeletedItemName.text = selectedItem?.itemName
@@ -81,21 +88,17 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
                 val getTime = sdf.format(date)
                 val filename = "${getTime}_${ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1)}.jpg"
 
-                val image = File(img_path)
-                var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(),image)
-                var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file",filename,requestBody)
-
-                val writeReviewRequest = WriteReviewRequest(selectedItem!!.itemId!!, "임시값", binding.editComment.text.toString(),
-                    binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt())
-                if(image.exists()==true) {
-                    showCustomToast("있음")
-                    WriteReviewService(this).tryPostReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1),
-                        body,
-                        writeReviewRequest
-                    )
-                } else {
-                    showCustomToast("없음")
+                val storageRef : StorageReference = storage.reference
+                val riversRef : StorageReference = storageRef.child("$filename.jpg")
+                val uploadTask : UploadTask? = file?.let { it1 -> riversRef.putFile(it1) }
+                val photoUri = "https://firebasestorage.googleapis.com/v0/b/ssac-test-7751b.appspot.com/o/$filename.jpg?alt=media"
+                Log.d("photoUri",photoUri)
+                uploadTask?.addOnSuccessListener {
+                    val writeReviewRequest = WriteReviewRequest(selectedItem!!.itemId!!, photoUri, binding.editComment.text.toString(),
+                        binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt())
+                    WriteReviewService(this).tryPostReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1), writeReviewRequest)
                 }
+
             }
         }
 
@@ -138,6 +141,8 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GET_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             img_path = data.data?.let { getImagePathToUri(it) }
+            file = data.data!!
+
             val image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.data)
             binding.imgUpload.setImageBitmap(image_bitmap)
         }
@@ -160,9 +165,12 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
 
     override fun onPostWriteReviewSuccess(response: BaseResponse) {
         Log.d("testaa",response.toString())
+        showCustomToast("등록이 완료되었습니다.")
+        finish()
     }
 
     override fun onPostWriteReviewFailure(message: String) {
         Log.d("testaa",message)
+        showCustomToast("등록에 실패했습니다. $message")
     }
 }

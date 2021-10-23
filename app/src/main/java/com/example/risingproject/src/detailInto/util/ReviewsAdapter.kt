@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.risingproject.R
 import com.example.risingproject.databinding.RecyclerItemFilterHorizontalColorBinding
 import com.example.risingproject.databinding.RecyclerReviewInfoBinding
 import com.example.risingproject.databinding.RecyclerReviewsBinding
@@ -39,6 +41,10 @@ class ReviewsAdapter(private val context: Context, private val items: List<revie
             binding.tvUploadtime.text = "    "+item.concat
             binding.tvKind.text = "사이즈/색상: 퀸 화이트 / 구성 풀세트"
             binding.tvContext.text = item.context
+
+            Glide.with(context).load(item.photo)
+                .error(R.drawable.img_upload_pic)
+                .into(binding.imgReview)
         }
     }
 }

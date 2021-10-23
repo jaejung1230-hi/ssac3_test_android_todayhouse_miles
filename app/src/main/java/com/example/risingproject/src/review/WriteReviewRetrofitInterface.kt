@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 
 interface WriteReviewRetrofitInterface {
-    @Multipart
+
     @POST("app/{userId}/reviews")
-    fun postReview(@Path("userId") userId : Int, @Part image : MultipartBody.Part, @Body params: WriteReviewRequest) : Call<BaseResponse>
+    fun postReview(@Path("userId") userId : Int,  @Body params: WriteReviewRequest) : Call<BaseResponse>
 }
