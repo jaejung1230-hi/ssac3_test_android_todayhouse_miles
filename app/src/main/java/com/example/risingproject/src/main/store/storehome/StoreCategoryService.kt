@@ -31,7 +31,7 @@ class StoreCategoryService(val view : StoreCategoryFragmentView) {
         val storeCategoryRetrofitInterface = ApplicationClass.sRetrofit.create(StoreCategoryRetrofitInterface::class.java)
         storeCategoryRetrofitInterface.getCategoryItemUseFilter(getCategoryItemUseFilterRequest.menuId,getCategoryItemUseFilterRequest.numOfPeople, getCategoryItemUseFilterRequest.material, getCategoryItemUseFilterRequest.used, getCategoryItemUseFilterRequest.color, getCategoryItemUseFilterRequest.season,
             getCategoryItemUseFilterRequest.pattern,getCategoryItemUseFilterRequest.brand,getCategoryItemUseFilterRequest.energyEfficiency,getCategoryItemUseFilterRequest.type,
-            getCategoryItemUseFilterRequest.design).enqueue(object : Callback<GetCategoryItemUseFilterResponse> {
+            getCategoryItemUseFilterRequest.design, getCategoryItemUseFilterRequest.page, getCategoryItemUseFilterRequest.num).enqueue(object : Callback<GetCategoryItemUseFilterResponse> {
             override fun onResponse(call: Call<GetCategoryItemUseFilterResponse>, response: Response<GetCategoryItemUseFilterResponse>) {
                 Log.d("test2",response.toString())
                 Log.d("test2",response.message().toString())

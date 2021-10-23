@@ -24,6 +24,8 @@ interface StoreCategoryRetrofitInterface {
         @Query("brand") brand: String?,
         @Query("energyEfficiency") energyEfficiency: Int?,
         @Query("type") type: String?,
-        @Query("design") design: String?
+        @Query("design") design: String?,
+        @Query("page") page: Int,
+        @Query("num") num: Int
     ) : Call<GetCategoryItemUseFilterResponse>
 }

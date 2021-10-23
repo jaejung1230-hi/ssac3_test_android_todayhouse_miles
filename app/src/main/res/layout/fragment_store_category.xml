@@ -324,7 +324,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <com.example.risingproject.util.ExpandableHeightGridView
+                <androidx.recyclerview.widget.RecyclerView
                     android:columnWidth="190dp"
                     android:stretchMode="columnWidth"
                     android:gravity="center"

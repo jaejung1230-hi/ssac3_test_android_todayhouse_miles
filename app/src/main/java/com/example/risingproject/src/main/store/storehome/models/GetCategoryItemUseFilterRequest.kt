@@ -15,6 +15,6 @@ data class GetCategoryItemUseFilterRequest (
     @SerializedName("energyEfficiency") val energyEfficiency: Int?,
     @SerializedName("type") val type: String?,
     @SerializedName("design") val design: String?,
-    @SerializedName("page") val page: Int?,
-    @SerializedName("num") val num: Int?,
+    @SerializedName("page") val page: Int,
+    @SerializedName("num") val num: Int,
 )

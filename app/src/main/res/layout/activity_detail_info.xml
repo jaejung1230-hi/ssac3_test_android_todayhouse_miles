@@ -516,7 +516,7 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager_styling"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="350dp"/>
 
             <androidx.recyclerview.widget.RecyclerView

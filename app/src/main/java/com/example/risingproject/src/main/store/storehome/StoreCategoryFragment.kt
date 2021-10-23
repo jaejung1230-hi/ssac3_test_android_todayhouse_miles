@@ -1,5 +1,6 @@
 package com.example.risingproject.src.main.store.storehome
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -23,6 +24,12 @@ import com.example.risingproject.src.main.store.storehome.util.*
 import com.example.risingproject.src.search.SearchActivity
 import java.lang.Integer.min
 import kotlin.properties.Delegates
+import android.widget.LinearLayout
+
+import androidx.recyclerview.widget.GridLayoutManager
+
+
+
 
 class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(FragmentStoreCategoryBinding::bind, R.layout.fragment_store_category) , StoreCategoryFragmentView, FilterItemClick {
     object FilterBoolean{
@@ -142,7 +149,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
                 )
         }
         StoreCategoryService(this).tryGetCategoryItem(GetCategoryItemRequest(categoryNum))
-        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,null,null,null,null,null,null,null,null,pageNo,pageRow)
+        val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(categoryNum,null,null,null,null,null,null,null,null,null,null,pageNo,pageRow)
         StoreCategoryService(this).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
         showLoadingDialog(requireContext())
 
@@ -221,9 +228,47 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             }
         }
 
-        binding.gridviewStorecategoryFilter.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        binding.gridviewStorecategoryFilter.addOnScrollListener(object : RecyclerView.OnScrollListener(){
 
-        }
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() // 화면에 보이는 마지막 아이템의 position
+                val itemTotalCount = recyclerView.adapter!!.itemCount - 1 // 어댑터에 등록된 아이템의 총 개수 -1
+
+                if(lastVisibleItemPosition == itemTotalCount){
+
+                    showCustomToast("끝 다음 $dy")
+                    var ripperCode = 0
+                    if(arr2.indexOf("리퍼 상품") != -1){
+                        ripperCode = if(FilterBoolean.arr[arr2.indexOf("리퍼 상품")][0]){ 1 }else{ 0 }
+                    }
+
+
+                    var colorFlag = false
+                    var colorFlagCount = 0
+                    for(i in FilterBoolean.arr[arr2.indexOf("색상")]){
+                        if(i){
+                            colorFlag = true
+                            break
+                        }
+                        colorFlagCount++
+                    }
+                    var colorCode : String? = null
+                    if(colorFlag){
+                        when(underarr[arr2.indexOf("색상")].filters[colorFlagCount]){
+                            "화이트" -> {colorCode = "WHITE"}
+                            "그린" -> {colorCode = "GREEN"}
+                            "베이지" -> {colorCode = "BEIGE"}
+                            else -> {colorCode = "ETC"}
+                        }
+                    }
+                    pageNo++
+                    val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,ripperCode,colorCode,null,null,null,null,null,null, pageNo, pageRow)
+                    StoreCategoryService(this@StoreCategoryFragment).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
+                }
+            }
+        })
 
     }
 
@@ -270,11 +315,19 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         Log.d("test",message)
     }
 
+    lateinit var madapter : StoreCategoryCategoryFilterGridViewAdapter
     override fun onGetCategoryItemUseFilterSuccess(response: GetCategoryItemUseFilterResponse) {
         dismissLoadingDialog()
         Log.d("test1",response.toString())
-        binding.gridviewStorecategoryFilter.adapter = StoreCategoryCategoryFilterGridViewAdapter(requireContext(),response.result)
-        binding.gridviewStorecategoryFilter.isExpanded = true
+
+        if(pageNo == 1){
+            val gridLayoutManager = GridLayoutManager(requireContext(), 2)
+            binding.gridviewStorecategoryFilter.layoutManager = gridLayoutManager
+            madapter = StoreCategoryCategoryFilterGridViewAdapter(requireContext(),response.result)
+            binding.gridviewStorecategoryFilter.adapter = madapter
+        }else{
+            madapter.add(response.result)
+        }
     }
 
     override fun onGetCategoryItemUseFilterFailure(message: String) {
@@ -283,7 +336,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
     }
 
     override fun getSelectedItem(pos1: Int, pos2: Int) {
-        showCustomToast("${pos1} / ${pos2}")
+        //showCustomToast("${pos1} / ${pos2}")
 
         if(FilterBoolean.arr[pos1][pos2]){
             chiparr.add(ChipWithPos(underarr[pos1].filters[pos2],pos1,pos2))

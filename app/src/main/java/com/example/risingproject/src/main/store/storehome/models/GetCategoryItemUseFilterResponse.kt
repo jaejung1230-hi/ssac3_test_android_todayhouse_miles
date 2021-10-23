@@ -4,5 +4,5 @@ import com.example.risingproject.config.BaseResponse
 import com.google.gson.annotations.SerializedName
 
 data class GetCategoryItemUseFilterResponse (
-    @SerializedName("result") val result: List<ResultItemUseFilter>
+    @SerializedName("result") val result: ArrayList<ResultItemUseFilter>
 ): BaseResponse()

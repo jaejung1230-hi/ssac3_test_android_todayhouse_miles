@@ -111,20 +111,19 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
             binding.tvDetailItemExtraDeliveryFee.visibility = View.GONE
         }
 
-        val dpValue = 54
-        val d = resources.displayMetrics.density
-        val margin = (dpValue * d).toInt()
 
         binding.viewpagerStyling.adapter = PicReViewPagerAdapter(this,response.result[4].reviewList)
-        binding.viewpagerStyling.clipToPadding = false
-        binding.viewpagerStyling.setPadding(margin, 0, margin, 0)
+        binding.viewpagerStyling.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.viewpagerStyling.setClipToPadding(false)
+        binding.viewpagerStyling.setPadding(60, 60, 60, 60)
         binding.viewpagerStyling.offscreenPageLimit=3
         binding.viewpagerStyling.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
         var transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(margin/2))
+        transform.addTransformer(MarginPageTransformer(30))
+
+
         binding.viewpagerStyling.setPageTransformer(transform)
-
-
+        binding.viewpagerStyling.setCurrentItem(0, false)
 
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -256,5 +255,6 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
 
     override fun getSelectedItem(pos: Int) {
         binding.viewpagerStyling.currentItem = pos
+
     }
 }
