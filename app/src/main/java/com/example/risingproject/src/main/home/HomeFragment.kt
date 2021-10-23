@@ -1,65 +1,27 @@
 package com.example.risingproject.src.main.home
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentHomeBinding
-import com.example.risingproject.src.main.home.models.PostSignUpRequest
-import com.example.risingproject.src.main.home.models.SignUpResponse
-import com.example.risingproject.src.main.home.models.UserResponse
+import com.example.risingproject.src.main.home.util.HomeFragmentViewPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),
-    HomeFragmentView {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
+    val ListCategory = listOf<String>("인기","팔로잉","사진","집들이","노하우","전문가집들이","질문과답변")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.homeButtonTryGetJwt.setOnClickListener {
-            showLoadingDialog(requireContext())
-            HomeService(this).tryGetUsers()
+
+        binding.viewpagerHomeFragment.apply {
+            adapter = HomeFragmentViewPagerAdapter(context as FragmentActivity)
         }
 
-        binding.homeBtnTryPostHttpMethod.setOnClickListener {
-            val email = binding.homeEtId.text.toString()
-            val password = binding.homeEtPw.text.toString()
-            val postRequest = PostSignUpRequest(email = email, password = password,
-                confirmPassword = password, nickname = "test", phoneNumber = "010-0000-0000")
-            showLoadingDialog(requireContext())
-            HomeService(this).tryPostSignUp(postRequest)
-        }
-
-        binding.homeBtnTest.setOnClickListener {
-            showCustomToast("버튼클릭")
-        }
-    }
-
-    override fun onGetUserSuccess(response: UserResponse) {
-        dismissLoadingDialog()
-        for (User in response.result) {
-            Log.d("HomeFragment", User.toString())
-        }
-        binding.homeButtonTryGetJwt.text = response.message
-        showCustomToast("Get JWT 성공")
-    }
-
-    override fun onGetUserFailure(message: String) {
-        dismissLoadingDialog()
-        showCustomToast("오류 : $message")
-    }
-
-    override fun onPostSignUpSuccess(response: SignUpResponse) {
-        dismissLoadingDialog()
-        binding.homeBtnTryPostHttpMethod.text = response.message
-        response.message?.let { showCustomToast(it) }
-    }
-
-    override fun onPostSignUpFailure(message: String) {
-        dismissLoadingDialog()
-        showCustomToast("오류 : $message")
+        TabLayoutMediator(binding.tabsHomeFragment,binding.viewpagerHomeFragment){ tab, position ->
+            tab.text = ListCategory[position]
+        }.attach()
     }
 }

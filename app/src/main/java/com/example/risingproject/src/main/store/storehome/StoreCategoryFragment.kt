@@ -25,8 +25,13 @@ import com.example.risingproject.src.search.SearchActivity
 import java.lang.Integer.min
 import kotlin.properties.Delegates
 import android.widget.LinearLayout
+import androidx.core.view.ViewCompat.canScrollVertically
 
 import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.Toast
+
+
+
 
 
 
@@ -49,18 +54,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
     private var myHandler = MyHandler()
     private var currentPosition = Int.MAX_VALUE / 2 - abslist.size / 2
 
-    val storeArr = listOf<temp>(
-        temp(R.drawable.img_store_category_furniture_sofa,"소파/거실가구","소파,침대..."),
-        temp(R.drawable.img_store_category_furniture_bed,"침실가구","침구,커튼..."),
-        temp(R.drawable.img_store_category_furniture_dress,"드레스룸","스탠드,무드등..."),
-        temp(R.drawable.img_store_category_furniture_kitchen,"주방가구","냉장고,노트북..."),
-        temp(R.drawable.img_store_category_furniture_desk,"학생/서재가구","그릇,냄비..."),
-        temp(R.drawable.img_store_category_furniture_kid,"유아동가구","그림,캔들..."),
-        temp(R.drawable.img_store_category_furniture_storage,"수납가구","리빙박스,행거..."),
-        temp(R.drawable.img_store_category_furniture_mirror,"화장대/거울","욕실,청소..."),
-        temp(R.drawable.img_store_category_furniture_table,"식탁/테이블","세제,샴푸..."),
-        temp(R.drawable.img_store_category_furniture_chair,"의자/스톨","시트지,손잡이..."),
-        temp(R.drawable.img_store_category_furniture_wall,"병풍/파티션","주방,욕실..."))
+    lateinit var storeArr : List<temp>
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -101,9 +95,6 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         arr = arrayListOf<ArrayList<Boolean>>()
 
-        binding.gridviewStorecategoryCategory.adapter = StoreCategoryCategoryGridViewAdapter(requireContext(),storeArr)
-        binding.gridviewStorecategoryCategory.isExpanded = true
-
         binding.containerStoreCategory.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         val bundle = arguments
         if(bundle != null){
@@ -113,6 +104,20 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
 
         if(binding.toolbarCategoryTitle.text.equals("가구")){
             categoryNum = 1
+
+            storeArr = listOf<temp>(
+                temp(R.drawable.img_store_category_furniture_sofa,"소파/거실가구","소파,침대..."),
+                temp(R.drawable.img_store_category_furniture_bed,"침실가구","침구,커튼..."),
+                temp(R.drawable.img_store_category_furniture_dress,"드레스룸","스탠드,무드등..."),
+                temp(R.drawable.img_store_category_furniture_kitchen,"주방가구","냉장고,노트북..."),
+                temp(R.drawable.img_store_category_furniture_desk,"학생/서재가구","그릇,냄비..."),
+                temp(R.drawable.img_store_category_furniture_kid,"유아동가구","그림,캔들..."),
+                temp(R.drawable.img_store_category_furniture_storage,"수납가구","리빙박스,행거..."),
+                temp(R.drawable.img_store_category_furniture_mirror,"화장대/거울","욕실,청소..."),
+                temp(R.drawable.img_store_category_furniture_table,"식탁/테이블","세제,샴푸..."),
+                temp(R.drawable.img_store_category_furniture_chair,"의자/스톨","시트지,손잡이..."),
+                temp(R.drawable.img_store_category_furniture_wall,"병풍/파티션","주방,욕실..."))
+
             arr2 = listOf<String>("정렬","리퍼 상품","색상","사용 인원","소재","우드톤", "지금 가장 핫한 상품", "자재 등급","미드센추리 모던","브랜드","조립 여부","상품 유형","가격(원)","배송")
             underarr = listOf<InfoForUnderFilter>(
                 InfoForUnderFilter("radio", listOf<String>("판매순","인기순","낮은 가격순","높은 가격순","리뷰 많은 순", "유저사진 많은 순", "최신순")),
@@ -132,7 +137,19 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
             )
         }else{
             categoryNum = 2
+
+            storeArr = listOf<temp>(
+                temp(R.drawable.img_store_category_frbric_bed,"침구","소파,침대..."),
+                temp(R.drawable.img_store_category_frbric_blind,"커튼/블라인드","침구,커튼..."),
+                temp(R.drawable.img_store_category_frbric_rug,"카페트/러그","스탠드,무드등..."),
+                temp(R.drawable.img_store_category_frbric_cution,"쿠션/방석","냉장고,노트북..."),
+                temp(R.drawable.img_store_category_frbric_home,"홈패브릭","그릇,냄비..."),
+                temp(R.drawable.img_store_category_frbric_kitchen,"주방패브릭","그림,캔들..."),
+                temp(R.drawable.img_store_category_frbric_hoby,"공예/취미","리빙박스,행거..."),
+                temp(R.drawable.img_store_category_frbric_kid,"유아용패브릭","욕실,청소..."))
+
             arr2 = listOf<String>("정렬","사용 계절","색상","주요 소재","패턴/프린트", "지금 가장 핫한 상품", "상품 유형", "특가", "가격(원)","배송")
+
             underarr = listOf<InfoForUnderFilter>(
                 InfoForUnderFilter("radio", listOf<String>("판매순","인기순","낮은 가격순","높은 가격순","리뷰 많은 순", "유저사진 많은 순", "최신순")),
                 InfoForUnderFilter("check", listOf<String>("봄/가을(간절기)","여름","겨울","사계절")),
@@ -146,8 +163,13 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
                 InfoForUnderFilter("check", listOf<String>("특가상품 보기")),
                 InfoForUnderFilter("radio", listOf<String>("50,000원 이하","100,000원~200,000원","200,000원~300,000원","300,000원~400,000원","400,000원~500,000원","500,000원~600,000원","600,000원~700,000원","700,000원~800,000원","800,000원~900,000원","900,000원~1,000,000원","1,000,000원 이상")),
                 InfoForUnderFilter("check", listOf<String>("무료 배송","희망일배송","업체직접배송","제주도 배송 가능"))
-                )
+            )
         }
+
+        binding.gridviewStorecategoryCategory.adapter = StoreCategoryCategoryGridViewAdapter(requireContext(),storeArr)
+        binding.gridviewStorecategoryCategory.isExpanded = true
+
+
         StoreCategoryService(this).tryGetCategoryItem(GetCategoryItemRequest(categoryNum))
         val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(categoryNum,null,null,null,null,null,null,null,null,null,null,pageNo,pageRow)
         StoreCategoryService(this).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
@@ -230,15 +252,9 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
 
         binding.gridviewStorecategoryFilter.addOnScrollListener(object : RecyclerView.OnScrollListener(){
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() // 화면에 보이는 마지막 아이템의 position
-                val itemTotalCount = recyclerView.adapter!!.itemCount - 1 // 어댑터에 등록된 아이템의 총 개수 -1
-
-                if(lastVisibleItemPosition == itemTotalCount){
-
-                    showCustomToast("끝 다음 $dy")
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
                     var ripperCode = 0
                     if(arr2.indexOf("리퍼 상품") != -1){
                         ripperCode = if(FilterBoolean.arr[arr2.indexOf("리퍼 상품")][0]){ 1 }else{ 0 }
@@ -266,6 +282,17 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
                     pageNo++
                     val getCategoryItemUseFilterRequest = GetCategoryItemUseFilterRequest(2,null,null,ripperCode,colorCode,null,null,null,null,null,null, pageNo, pageRow)
                     StoreCategoryService(this@StoreCategoryFragment).tryGetCategoryItemUseFilter(getCategoryItemUseFilterRequest)
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() // 화면에 보이는 마지막 아이템의 position
+                val itemTotalCount = recyclerView.adapter!!.itemCount - 1 // 어댑터에 등록된 아이템의 총 개수 -1
+
+                if(binding.gridviewStorecategoryFilter.canScrollVertically(1)){
+
                 }
             }
         })

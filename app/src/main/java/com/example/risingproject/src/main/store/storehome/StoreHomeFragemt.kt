@@ -8,6 +8,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
+import com.example.risingproject.config.ApplicationClass
+import com.example.risingproject.config.ApplicationClass.Companion.LOG_IN_USER
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentStoreHomeBinding
 import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
@@ -129,6 +131,13 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
             binding.recyclerRecord.layoutManager = linearLayoutManager
             binding.recyclerRecord.adapter = StoreHomeRecordAdapter(requireContext(),recordList)
         }
+
+        binding.tvNickname.text = ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1).toString()+"user"
+
+        val recomendLinearLayoutManager = LinearLayoutManager(requireContext())
+        recomendLinearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.recyclerRecomend.layoutManager = recomendLinearLayoutManager
+        binding.recyclerRecomend.adapter = StoreHomeRecordAdapter(requireContext(),response.result)
 
         binding.gridviewStorehomePopulor.adapter = StoreHomePopulorFilterGridViewAdapter(requireContext(),response.result)
         binding.gridviewStorehomePopulor.isExpanded = true
