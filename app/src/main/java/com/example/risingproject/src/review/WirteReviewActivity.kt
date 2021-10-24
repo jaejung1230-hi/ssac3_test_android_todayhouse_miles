@@ -95,7 +95,7 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
                 Log.d("photoUri",photoUri)
                 uploadTask?.addOnSuccessListener {
                     val writeReviewRequest = WriteReviewRequest(selectedItem!!.itemId!!, photoUri, binding.editComment.text.toString(),
-                        binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt(),  binding.ratingbarPoint.rating .toInt())
+                        binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt())
                     WriteReviewService(this).tryPostReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1), writeReviewRequest)
                 }
 
@@ -146,7 +146,6 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
             val image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.data)
             binding.imgUpload.setImageBitmap(image_bitmap)
         }
-
     }
 
     fun getImagePathToUri(data : Uri):String {

@@ -32,6 +32,18 @@
         </activity>
 
         <activity
+            android:name=".src.uploadpic.UploadPicActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".src.uploadpic.addItemTag.AddItemTagActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+        </activity>
+
+        <activity
             android:name=".src.review.WirteReviewActivity"
             android:screenOrientation="portrait"
             android:exported="true">

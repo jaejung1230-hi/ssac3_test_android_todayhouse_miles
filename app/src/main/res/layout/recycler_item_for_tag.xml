@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/container_horizontal"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="fitXY"
+        android:id="@+id/img_item_tag"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@color/main"/>
+
+    <TextView
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintStart_toEndOf="@+id/img_item_tag"
+        app:layout_constraintEnd_toStartOf="@+id/btn_item_tag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/tv_item_tag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="회사명"
+        />
+
+    <Button
+        android:backgroundTint="@color/main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="선택"
+        android:id="@+id/btn_item_tag"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
