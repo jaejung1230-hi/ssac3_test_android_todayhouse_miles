@@ -1,94 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    android:id="@+id/container_add_tag"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:gravity="top"
+    app:umanoPanelHeight = "0dp"
+    app:umanoOverlay="true"
+    app:umanoDragView="@id/location_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:background="@color/black"
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:contentInsetStart="0dp"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="10dp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="17dp"
+                                android:text="상품태그"
+                                tools:ignore="RtlCompat"/>
+
+                            <TextView
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="10dp"
+                                android:textAlignment="viewEnd"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:id="@+id/btn_upload_pic"
+                                android:textStyle="bold"
+                                android:textColor="@color/main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="17dp"
+                                android:text="올리기"
+                                tools:ignore="RtlCompat">
+                            </TextView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/draw_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img_add_tag"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
     <LinearLayout
+        android:background="@color/white"
         android:orientation="vertical"
+        android:id="@+id/location_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:background="@color/black"
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:contentInsetStart="0dp"
-                    >
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <TextView
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="17dp"
-                            android:text="상품태그"
-                            tools:ignore="RtlCompat"/>
-
-                        <TextView
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="10dp"
-                            android:textAlignment="viewEnd"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:id="@+id/btn_upload_pic"
-                            android:textStyle="bold"
-                            android:textColor="@color/main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="17dp"
-                            android:text="올리기"
-                            tools:ignore="RtlCompat">
-                        </TextView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:orientation="vertical"
+        <LinearLayout
+            android:padding="10dp"
+            android:background="@drawable/bottom_boarder"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/img_add_tag"
-                android:scaleType="centerCrop"
-                android:src="@drawable/test"
+                android:id="@+id/btn_back"
+                android:src="@drawable/ic_baseline_keyboard_backspace_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/edit_search_tag"
+                android:hint="상품명, 브랜드를 검색하세요"
+                android:layout_marginStart="10dp"
+                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_weight="1"
+                android:layout_width="00dp"
+                android:layout_height="00dp"/>
+            <TextView
+                android:id="@+id/temp_rdit"
+                android:textSize="10dp"
+                android:layout_gravity="end"
+                android:text="원하는 결과가 없다면? "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textSize="10dp"
+                android:layout_gravity="end"
+                android:textColor="@color/main"
+                android:text="직접등록"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_item_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
