@@ -18,11 +18,49 @@
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
+            android:background="@color/white"
             android:theme="?attr/actionBarTheme"
             app:layout_scrollFlags="scroll|enterAlways"
             app:contentInsetStart="0dp"
             >
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/ic_menu_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_menu_home"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <LinearLayout
+                android:background="@drawable/gray_solied_btn"
+                android:orientation="horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:textSize="20dp">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_menu_search"/>
+
+                <EditText
+                    android:hint="스토어 검색"
+                    android:id="@+id/edit_toolbar_search"
+                    android:singleLine="true"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

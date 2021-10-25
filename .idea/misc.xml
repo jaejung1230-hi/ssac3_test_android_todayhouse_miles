@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/JaeJung/.gradle/caches/transforms-3/e47605aae859601a2b66a4f4c40aba2b/transformed/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-mdpi/gray_key_word.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-mdpi/gray_solied_btn.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-mdpi/main_stroke_btn.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-v24/bottom_boarder_gray_bg.xml" value="0.22083333333333333" />
@@ -13,6 +15,7 @@
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-v24/special_price_bg.xml" value="0.2078125" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-v24/special_text_bg.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-v24/top_sheet_background.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-xhdpi/bg_spinner_pic_selected2.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-xhdpi/gray_btn.xml" value="0.39479166666666665" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-xxhdpi/bottom_boarder.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-xxhdpi/gray_stroke_corner_textview.xml" value="0.38229166666666664" />
@@ -25,16 +28,20 @@
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable-xxxhdpi/gridview_item_bg.xml" value="0.21145833333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/bg_spinner_age.xml" value="0.2078125" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/bg_spinner_pic.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/bg_spinner_pic_selected.xml" value="0.39479166666666665" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/custom_round_checkbox.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/default_dot.xml" value="0.21510416666666668" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/drawable_left_resize.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/gray_ellipse.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_14.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1828125" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_main_14.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_main_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_check_dark_12.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_check_gray_12.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_check_white_12.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_close_16.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_close_white_14.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_baseline_white_add_12.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/ic_home_selector.xml" value="0.38229166666666664" />
@@ -49,7 +56,7 @@
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/drawable/tab_selector.xml" value="0.21510416666666668" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_add_item_tag.xml" value="0.18" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_custom_recommend_info.xml" value="0.45748502994011975" />
-        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_detail_info.xml" value="0.16" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_detail_info.xml" value="0.33" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_login_email.xml" value="0.33" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
@@ -69,7 +76,7 @@
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/drower_store_catergory_filter.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_home_main.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_my_page.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_my_page.xml" value="0.2" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_store.xml" value="0.25" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_store_category.xml" value="0.2660280029476787" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/fragment_store_home.xml" value="0.22" />
@@ -90,18 +97,23 @@
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_item_for_tag.xml" value="0.5" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_item_for_today.xml" value="0.33" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_item_ten_filter.xml" value="0.75" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_keyword_text.xml" value="0.5" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_review_info.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/recycler_reviews.xml" value="0.5" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/search_top_sheet.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/spinner_age_item.xml" value="0.2046875" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/spinner_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/spinner_item2.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/top_sheet_dialog.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/view_pager_ads.xml" value="0.21145833333333333" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/view_pager_ads_home.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/layout/view_pager_reviews.xml" value="0.1828125" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/menu/menu_back_and_home.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/menu/menu_bookmark_and_basket.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/menu/menu_custom_recommend_info_toolbar.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/menu/menu_main_bottom_nav.xml" value="0.33" />
         <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/menu/menu_search_and_basket.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/JaeJung/AndroidStudioProjects/RisingProject/app/src/main/res/xml/spinner_item.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

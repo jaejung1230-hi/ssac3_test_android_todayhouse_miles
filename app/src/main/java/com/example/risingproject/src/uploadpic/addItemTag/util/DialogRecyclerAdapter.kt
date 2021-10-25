@@ -27,7 +27,7 @@ class DialogRecyclerAdapter(private val context: Context, private val items: Lis
             binding.tvItemTag.text = item.itemName
 
             binding.btnItemTag.setOnClickListener {
-                selectTagClick.getSelectedTag(item.itemId)
+                selectTagClick.getSelectedTag(item)
             }
         }
     }

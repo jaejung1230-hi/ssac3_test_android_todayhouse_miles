@@ -63,15 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Spinner
-                    android:background="@drawable/bg_spinner_pic"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center|start"
-                    android:text="평수"
-                    android:textColor="@color/blackForText"
+                    android:id="@+id/spinner_p"
+                    android:background="@drawable/bg_spinner_pic_selected2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </FrameLayout>
@@ -81,15 +74,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Spinner
-                    android:background="@drawable/bg_spinner_pic"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center|start"
-                    android:text="주거형태"
-                    android:textColor="@color/blackForText"
+                    android:id="@+id/spinner_l"
+                    android:background="@drawable/bg_spinner_pic_selected2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </FrameLayout>
@@ -99,17 +85,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Spinner
-                    android:background="@drawable/bg_spinner_pic"
-                    android:layout_width="85dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center|start"
-                    android:text="스타일"
-                    android:textColor="@color/blackForText"
+                    android:id="@+id/spinner_s"
+                    android:background="@drawable/bg_spinner_pic_selected2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
             </FrameLayout>
         </LinearLayout>
 
@@ -125,6 +105,7 @@
                 android:layout_height="match_parent"/>
 
             <TextView
+                android:id="@+id/tv_add_tag"
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="15dp"
                 android:drawableLeft="@drawable/ic_baseline_white_add_12"
@@ -135,6 +116,19 @@
                 android:text="상품 태그하기"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_add_tag_now"
+                android:visibility="gone"
+                android:layout_gravity="bottom|right"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="@color/main"
+                android:drawableLeft="@drawable/ic_item_tag_marker_mini"/>
         </FrameLayout>
 
         <LinearLayout
@@ -146,20 +140,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Spinner
-                    android:background="@drawable/bg_spinner_pic"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center|start"
-                    android:text="공간"
-                    android:textColor="@color/blackForText"
+                    android:id="@+id/spinner_r"
+                    android:background="@drawable/bg_spinner_pic_selected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
             </FrameLayout>
 
             <EditText
+                android:id="@+id/edit_context"
                 android:layout_marginStart="5dp"
                 android:background="@null"
                 android:hint="사진에 대해 설명해 주세요."
@@ -173,12 +162,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/temp_k"
                 android:text="#"
                 android:textColor="@color/blackForText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:background="@null"
+                android:id="@+id/edit_keyword"
                 android:layout_marginStart="5dp"
                 android:hint="키워드를 입력해주세요."
                 android:layout_width="match_parent"
@@ -186,6 +180,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

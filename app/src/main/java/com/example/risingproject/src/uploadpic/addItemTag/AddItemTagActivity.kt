@@ -1,6 +1,7 @@
 package com.example.risingproject.src.uploadpic.addItemTag
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,15 +23,19 @@ import kotlin.properties.Delegates
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.risingproject.R
+import com.example.risingproject.src.uploadpic.addItemTag.models.ResultItem
+import android.content.Intent
+import com.example.risingproject.src.uploadpic.UploadPicActivity.save.listID
+import com.example.risingproject.src.uploadpic.UploadPicActivity.save.listItem
+import com.example.risingproject.src.uploadpic.UploadPicActivity.save.listX
+import com.example.risingproject.src.uploadpic.UploadPicActivity.save.listY
+
 
 class AddItemTagActivity: BaseActivity<ActivityAddItemTagBinding>(ActivityAddItemTagBinding::inflate), SelectTagClick {
     lateinit var slidePanel : SlidingUpPanelLayout
     var nowX by Delegates.notNull<Float>()
     var nowY by Delegates.notNull<Float>()
 
-    val listX = ArrayList<Float>()
-    val listY = ArrayList<Float>()
-    val listID = ArrayList<Int>()
     val listImageView = ArrayList<ImageView>()
 
     @SuppressLint("ClickableViewAccessibility")
@@ -45,20 +50,32 @@ class AddItemTagActivity: BaseActivity<ActivityAddItemTagBinding>(ActivityAddIte
         }
 
         val image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(intent.getStringExtra("uri")))
+
+
         binding.imgAddTag.setImageBitmap(image_bitmap)
         binding.imgAddTag.setOnTouchListener { v, event ->
+            var flag = true
             if (event.action == MotionEvent.ACTION_UP) {
-                nowX = (event.x / binding.imgAddTag.measuredWidth)
-                nowY = (event.y / binding.imgAddTag.measuredHeight)
-                slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+                if(listImageView.size != 0){
+                    for(i in 0..listImageView.size-1){
+                        if(event.x >= listX[i]-0.05 && event.x < listX[i]+0.05 && event.y >= listY[i]-0.05 && event.y < listY[i]+0.05){
+                            flag = false
+                            break
+                        }
+                    }
+                }
+                if(flag){
+                    nowX = (event.x / binding.imgAddTag.measuredWidth)
+                    nowY = (event.y / binding.imgAddTag.measuredHeight)
+                    slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+                }else{
+                    showCustomToast("다이얼로그")
+                }
+
             }
             return@setOnTouchListener true
         }
-        binding.imgAddTag.setOnClickListener {
-            slidePanel.anchorPoint = 1.5f
 
-
-        }
         binding.editSearchTag.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -80,11 +97,34 @@ class AddItemTagActivity: BaseActivity<ActivityAddItemTagBinding>(ActivityAddIte
             override fun afterTextChanged(s: Editable?) {}
 
         })
+
+        binding.btnUploadPic.setOnClickListener {
+            finish()
+        }
     }
 
-    override fun getSelectedTag(itemId: Int) {
+    override fun onResume() {
+        super.onResume()
+
+        if(listX.size != 0){
+            for(i in 0 until listX.size){
+                Log.d("addtag",binding.imgAddTag.measuredWidth.toString())
+                Log.d("addtag",listX[i].toString())
+                Log.d("addtag",binding.imgAddTag.measuredHeight.toString())
+                Log.d("addtag",listY[i].toString())
+                val imageView = ImageView(this@AddItemTagActivity)
+                imageView.setImageResource(R.drawable.ic_item_tag_marker)
+
+                val params : LinearLayout.LayoutParams = LinearLayout.LayoutParams(50, 50)
+                params.setMargins((binding.imgAddTag.measuredWidth*listX[i]).toInt(), (binding.imgAddTag.measuredHeight*listY[i]).toInt(), 0, 0)
+                imageView.layoutParams = params
+                listImageView.add(imageView)
+                binding.drawFrame.addView(imageView)
+            }
+        }
+    }
+    override fun getSelectedTag(item: ResultItem) {
         slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
-        showCustomToast("선택완료. $itemId")
 
         val imageView = ImageView(this@AddItemTagActivity)
         imageView.setImageResource(R.drawable.ic_item_tag_marker)
@@ -94,8 +134,9 @@ class AddItemTagActivity: BaseActivity<ActivityAddItemTagBinding>(ActivityAddIte
         imageView.layoutParams = params
 
         listX.add(nowX)
-        listY.add(nowX)
-        listID.add(itemId)
+        listY.add(nowY)
+        listID.add(item.itemId)
+        listItem.add(item)
         listImageView .add(imageView)
 
         binding.drawFrame.addView(imageView)

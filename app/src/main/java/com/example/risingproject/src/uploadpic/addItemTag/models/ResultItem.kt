@@ -1,7 +1,10 @@
 package com.example.risingproject.src.uploadpic.addItemTag.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ResultItem (
     @SerializedName("itemId") val itemId: Int,
     @SerializedName("itemName") val itemName: String,
@@ -13,4 +16,4 @@ data class ResultItem (
     @SerializedName("numOfReviews") val numOfReviews: Int,
     @SerializedName("mainPhoto") val mainPhoto: String
 
-    )
+    ) : Parcelable
