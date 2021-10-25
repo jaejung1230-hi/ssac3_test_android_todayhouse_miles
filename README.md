@@ -165,4 +165,38 @@ API중 카테고리별 검색 API를 추가로 적용하였으며 전체 카테�
 해당 레이아웃에서 사진을 누르게 되면 topsheet레이아웃을 보여준다. 해당 레이아웃은 서버와 연결되어 이름으로 등록된 아이템을 찾을 수 있다. 해당 아이템을 찾고나면 등록 버튼을 누르게 되는데
 이를 누르게 되면 해당 위치에 해당 아이템의 정보가 기록된 태그가 보여지게 된다.
 
+10/25
+
+오늘은 총 4개의 수정사항을 피드백 받았다.
+1. 레이아웃 다듬기
+2. 사진 등록 보기 API 기능 구현
+3. 장바구니 구현
+4. 내 리뷰보기 API구현
+
+
+먼저 4번을 완료하였다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138748091-ae114b90-5bbf-450f-83aa-9243cea9b515.png)
+![initial](https://user-images.githubusercontent.com/66465380/138748132-fc0d4237-d255-425d-b69c-52a35dbb599e.png)
+
+내 리뷰액티비티로 넘어가기 위해 간단한 프레그먼트 레이아웃을 만들었다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138748187-ff4c7578-fd53-413e-8cb7-91d39204d34c.png)
+
+여기서 내 리뷰액티비티로 넘어갈 수 있고 API를 연동 내 리뷰만 보는 기능을 구현하였다.
+
+다음으로 2번을 70%정도 구현 완료하였다.
+사진에 아이템의 정보를 태그로 달아 등록하는 API를 연결하였으며 이를 전체받기 API, 상세받기API를 연결하였다.
+또한 이를 위해 홈프레그먼트의 레이아웃을 꾸몄고 상세페이지의 레이아웃또한 꾸몄다.
+API의 연결을 확인하였고 이를 내일 화면에 뿌려줄 예정이다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138747792-d8bcee7d-6a59-47c8-a12d-ebf543af1e08.png)
+![initial](https://user-images.githubusercontent.com/66465380/138747956-22baaad1-a328-4cd9-ab17-912bcc0cf515.png)
+
+![initial](https://user-images.githubusercontent.com/66465380/138748037-fe567ff6-fc9d-49f0-a6f7-322ef19f81b5.png)
+
+이제 내일은 화면에 사진정보를 뿌려주는 작업을 완료하고. 바텀다이얼로그프레그먼트를 이용 장바구니를 구현할 예정이다.
+그리고 수요일은 구현못한 기능이 있다면 이를 구현하고 레이아웃을 다듬는 작업을 할 것이다.
+
+
 
