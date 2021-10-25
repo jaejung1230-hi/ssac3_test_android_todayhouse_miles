@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:padding="10dp"
+    android:background="@drawable/bottom_boarder"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="수정"
+        android:textStyle="bold"
+        android:textColor="@color/main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_marginTop="3dp"
@@ -33,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="이름"/>
+        android:text="jjk"/>
 
     <RatingBar
         android:id="@+id/ratingber_review"
@@ -60,9 +70,7 @@
         android:text="이름"/>
 
     <TextView
-        android:paddingStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/left_boarder"
         android:id="@+id/tv_kind"
         app:layout_constraintTop_toBottomOf="@+id/ratingber_review"
         app:layout_constraintStart_toStartOf="parent"

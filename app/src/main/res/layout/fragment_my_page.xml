@@ -564,6 +564,7 @@
                     android:layout_height="45dp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/linear_my_review"
                 android:background="@drawable/top_boarder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

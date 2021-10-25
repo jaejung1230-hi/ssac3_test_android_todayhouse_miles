@@ -140,8 +140,8 @@ class UploadPicActivity: BaseActivity<ActivityUploadPicBinding>(ActivityUploadPi
 
             uploadTask?.addOnSuccessListener {
                 val uploadPicRequest = UploadPicRequest(binding.editContext.text.toString(), photoUri, itemP.indexOf(binding.spinnerP.selectedItem.toString())+1,
-                    itemL.indexOf(binding.spinnerL.selectedItem.toString())+1,  itemS.indexOf(binding.spinnerS.selectedItem.toString())+1,
-                    itemR.indexOf(binding.spinnerR.selectedItem.toString())+1, key, save.listX, save.listY, save.listID)
+                    itemL.indexOf(binding.spinnerL.selectedItem.toString())+7,  itemS.indexOf(binding.spinnerS.selectedItem.toString())+13,
+                    itemR.indexOf(binding.spinnerR.selectedItem.toString())+21, key, save.listX, save.listY, save.listID)
                 UploadPicService(this).tryPostPic(ApplicationClass.sSharedPreferences.getInt(ApplicationClass.LOG_IN_USER,-1), uploadPicRequest)
             }
         }

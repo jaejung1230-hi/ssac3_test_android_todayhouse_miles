@@ -9,6 +9,7 @@ import com.example.risingproject.config.ApplicationClass
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentMyPageBinding
 import com.example.risingproject.src.login.LoginActivity
+import com.example.risingproject.src.myReview.MyReviewActivity
 
 
 class MyPageFragment :
@@ -24,6 +25,11 @@ class MyPageFragment :
             val intent = Intent(requireContext(), LoginActivity::class.java)
             context?.startActivity(intent)
             ActivityCompat.finishAffinity(requireActivity())
+        }
+
+        binding.linearMyReview.setOnClickListener {
+            val intent = Intent(requireContext(), MyReviewActivity::class.java)
+            context?.startActivity(intent)
         }
     }
 }

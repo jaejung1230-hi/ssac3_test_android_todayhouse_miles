@@ -6,17 +6,22 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.config.BaseFragment
 import com.example.risingproject.databinding.FragmentHomeMainBinding
+import com.example.risingproject.src.main.home.homemain.models.getPicResponse
 import com.example.risingproject.src.uploadpic.UploadPicActivity
 import com.example.risingproject.src.main.home.homemain.models.pageIconInfo
+import com.example.risingproject.src.main.home.homemain.util.BestPicRecyclerAdapter
 import com.example.risingproject.src.main.home.homemain.util.HomeAdsViewPagerAdapter
 import com.example.risingproject.src.main.home.homemain.util.HomePagesGridViewAdapter
+import com.example.risingproject.src.uploadpic.util.HomeMainService
 
-class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(FragmentHomeMainBinding::bind, R.layout.fragment_home_main) {
+class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(FragmentHomeMainBinding::bind, R.layout.fragment_home_main), HomeMainFragmentView {
     private val GET_GALLERY_IMAGE = 200
 
     val storeArr = listOf<pageIconInfo>(pageIconInfo(R.drawable.img_home_main_shopping,"쇼핑하기",0),
@@ -64,7 +69,7 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(FragmentHomeMainB
         binding.gridviewHomemainPages.isExpanded = true
 
 
-        binding.temp.setOnClickListener {
+        binding.btnUploadPicMain.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             startActivityForResult(intent, GET_GALLERY_IMAGE)
@@ -104,12 +109,27 @@ class HomeMainFragment : BaseFragment<FragmentHomeMainBinding>(FragmentHomeMainB
 
     override fun onResume() {
         super.onResume()
-
         autoScrollStart(intervalTime)
+        showLoadingDialog(requireContext())
+        HomeMainService(this).tryPostPic()
     }
 
     override fun onPause() {
         super.onPause()
         autoScrollStop()
+    }
+
+    override fun onGetPicsSuccess(response: getPicResponse) {
+        Log.d("testaa",response.result.toString())
+        dismissLoadingDialog()
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.recyclerBestPic.layoutManager = linearLayoutManager
+        binding.recyclerBestPic.adapter = BestPicRecyclerAdapter(requireContext(), response.result)
+    }
+
+    override fun onGetPicsFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast(message)
     }
 }

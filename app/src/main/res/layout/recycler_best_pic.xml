@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/container_story"
+    android:layout_marginHorizontal="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="180dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_img_review"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@color/redForText"
+                android:scaleType="fitXY"
+                android:id="@+id/img_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:layout_marginStart="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+                <TextView
+                    android:background="@drawable/img_flag2"
+                    android:id="@+id/bg_tv_flag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                     />
+                <TextView
+                    android:id="@+id/tv_flag"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="1"
+                    android:textSize="18dp"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_pic_nickname"
+                android:textColor="@color/white"
+                android:text="닉네임"
+                android:textSize="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="start|bottom"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/img_bookmark"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
