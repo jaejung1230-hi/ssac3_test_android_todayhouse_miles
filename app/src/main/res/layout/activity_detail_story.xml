@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/tv_exp"
                 android:layout_marginHorizontal="10dp"
                 android:text="설명"
                 android:layout_width="match_parent"

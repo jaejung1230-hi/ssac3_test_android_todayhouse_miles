@@ -1,8 +1,6 @@
 package com.example.risingproject.src.detailStory
 
-import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
-import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
-import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
+import com.example.risingproject.src.detailStory.models.GetDetailStoryResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,6 +11,6 @@ interface DetailStoryRetrofitInterface {
     @GET("app/userId/{userId}/stories?")
     fun getDetailStory(@Path("userId") userId : Int,
                        @Query("storyId") storyId : Int
-    ) : Call<Any>
+    ) : Call<GetDetailStoryResponse>
 
 }

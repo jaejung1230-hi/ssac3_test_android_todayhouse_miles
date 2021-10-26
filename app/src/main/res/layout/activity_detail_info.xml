@@ -992,6 +992,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/img_bookmark"/>
         <Button
+            android:id="@+id/btn_buy"
             android:layout_margin="5dp"
             android:backgroundTint="@color/main"
             android:text="구매하기"

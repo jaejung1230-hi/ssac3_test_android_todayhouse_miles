@@ -9,13 +9,13 @@ import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import android.view.Menu
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.view.marginRight
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.databinding.ActivityDetailInfoBinding
+import com.example.risingproject.src.detailInto.buy.BuyBottomDialogFragment
 import com.example.risingproject.src.detailInto.util.*
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemRequest
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
@@ -57,7 +57,6 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
                 Log.d("LOGGER_TAG", "freeListener")
             }
         }
-
     }
 
     override fun onStart() {
@@ -66,6 +65,11 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         GlobalFunctions.setRecordPref(intent.getIntExtra("itemId",-1).toString())
         DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",-1))
         showLoadingDialog(this)
+
+        binding.btnBuy.setOnClickListener {
+            val locationBottomDialogFragment: BuyBottomDialogFragment = BuyBottomDialogFragment(this, intent.getIntExtra("itemId",-1))
+            locationBottomDialogFragment.show(supportFragmentManager, locationBottomDialogFragment.tag)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
