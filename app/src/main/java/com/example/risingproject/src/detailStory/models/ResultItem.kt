@@ -11,4 +11,5 @@ data class ResultItem (
     @SerializedName("photo") val photo: List<photo>,
     @SerializedName("context") val context:  List<keywords>,
     @SerializedName("pos") val pos: List<pos>
+
     )

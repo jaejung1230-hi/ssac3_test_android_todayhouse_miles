@@ -847,6 +847,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/btn_all_review"
                 android:backgroundTint="@color/main"
                 android:text="리뷰 더보기"
                 android:textStyle="bold"

@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.databinding.ActivityDetailInfoBinding
+import com.example.risingproject.src.allReview.AllReviewActivity
 import com.example.risingproject.src.detailInto.buy.BuyBottomDialogFragment
 import com.example.risingproject.src.detailInto.util.*
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemRequest
@@ -69,6 +70,12 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         binding.btnBuy.setOnClickListener {
             val locationBottomDialogFragment: BuyBottomDialogFragment = BuyBottomDialogFragment(this, intent.getIntExtra("itemId",-1))
             locationBottomDialogFragment.show(supportFragmentManager, locationBottomDialogFragment.tag)
+        }
+
+        binding.btnAllReview.setOnClickListener {
+            val intent = Intent(this,AllReviewActivity::class.java)
+            intent.putExtra("itemId",intent.getIntExtra("itemId",-1))
+            startActivity(intent)
         }
     }
 
