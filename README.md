@@ -199,4 +199,28 @@ API의 연결을 확인하였고 이를 내일 화면에 뿌려줄 예정이다.
 그리고 수요일은 구현못한 기능이 있다면 이를 구현하고 레이아웃을 다듬는 작업을 할 것이다.
 
 
+10/26
 
+![initial](https://user-images.githubusercontent.com/66465380/138931388-365f2d28-870b-4c00-b71d-25f3e27bec81.png)
+![initial](https://user-images.githubusercontent.com/66465380/138931471-d9a2b74b-f6a3-44d7-b01f-7740d81f8cce.png)
+
+사진 상세보기 API의 구현을 완료하였다. 이것으로 원하던 핵심기능을 미숙하게 나마 구현하였다.
+사진의 담긴 아이템의 정보로 원하는 상품을 찾을 수 있다. 비슷한 아이템 추천기능은 없기 때문에 간단하게 모든 사진을 뿌려주었다.
+
+
+![initial](https://user-images.githubusercontent.com/66465380/138931532-c56e4db1-b0c2-4341-837d-9518ad0be4f1.png)
+
+장바구니 담기부분의 API를 연결하였다. 다만 스피너를 커스텀 하는데 많은 시간이 걸릴 것으로 예상 우선순위를 뒤로 미루고 정해진 데이터를 장바구니로 입력하게 하였고 이를 성공하였다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138931667-a230b1c9-18f7-487f-b14d-02bedda4a8c8.png)
+![initial](https://user-images.githubusercontent.com/66465380/138931743-467ffa7d-5cba-481a-8bb3-fb60c8ae1b3c.png)
+
+장바구니 불러오기 API를 연결하고 싶었으나 API구현에 문제점이 있어 협의후 내일 해결하는 것으로 하였다.
+
+마찬가지로 전체리뷰 API도 문제가 있었기 때문에 레이아웃을 선구현 내일 연동하는 것으로 하였다.
+
+![initial](https://user-images.githubusercontent.com/66465380/138931814-732ef630-d5b5-47f7-a4bd-4835107f613a.png)
+![initial](https://user-images.githubusercontent.com/66465380/138931925-4b9a493d-8670-41f2-a7a9-7443cdd302df.png)
+
+내일은 2가지 API를 연동하고 미숙한 레이아웃 부분을 모두 다듬을 생각이다.
+해당 사항이 완료되면 2주간의 라이징테스트가 완료된다.
