@@ -2,6 +2,7 @@ package com.example.risingproject.src.myReview
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.risingproject.config.ApplicationClass
 import com.example.risingproject.config.ApplicationClass.Companion.LOG_IN_USER
@@ -14,6 +15,11 @@ class MyReviewActivity : BaseActivity<ActivityMyReviewBinding>(ActivityMyReviewB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showLoadingDialog(this)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         MyReviewService(this).tryGetMyReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,1))
     }
 

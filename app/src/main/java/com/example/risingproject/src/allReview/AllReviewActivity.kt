@@ -18,7 +18,7 @@ class AllReviewActivity : BaseActivity<ActivityAllReviewBinding>(ActivityAllRevi
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        AllReviewService(this).tryGetAllReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,0),1)
+        AllReviewService(this).tryGetAllReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,0),intent.getIntExtra("itemId",1))
     }
 
     @SuppressLint("SetTextI18n")

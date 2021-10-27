@@ -9,5 +9,5 @@ data class totalRateItem(
     @SerializedName("4points") val `4points`: Int,
     @SerializedName("5points") val `5points`: Int,
     @SerializedName("avgOfRate") val avgOfRate: Float,
-    @SerializedName("reviewAvg") val reviewAvg: Int
+    @SerializedName("reviewAvg") val reviewAvg: Float
 )

@@ -56,6 +56,10 @@ class UploadPicActivity: BaseActivity<ActivityUploadPicBinding>(ActivityUploadPi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         storage = FirebaseStorage.getInstance()
 
         val uriStr = intent.getStringExtra("uri")

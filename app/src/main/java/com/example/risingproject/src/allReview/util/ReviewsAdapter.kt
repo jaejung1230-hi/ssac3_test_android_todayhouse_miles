@@ -32,7 +32,7 @@ class ReviewsAdapter(private val context: Context, private val items: List<Revie
     inner class ViewHolder(private var binding: RecyclerAllReviewInfoBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(context: Context, item: ReviewsItem){
             binding.tvReviewerName.text = item.userNickName
-            binding.ratingberReview.progress = item.reviewAvg * 20
+            binding.ratingberReview.progress = (item.reviewAvg * 20).toInt()
             binding.tvUploadtime.text = item.uploadTime
             binding.tvKind.text = "사이즈/색상: 퀸 화이트 / 구성 풀세트"
             binding.tvContext.text = item.context

@@ -26,22 +26,46 @@
                 app:layout_collapseMode="pin"
                 app:contentInsetStart="0dp"
                 >
-
-                <TextView
-                    android:layout_marginEnd="10dp"
-                    android:textAlignment="viewEnd"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:id="@+id/btn_upload_pic"
-                    android:textStyle="bold"
-                    android:textColor="@color/main"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="17dp"
-                    android:text="리뷰 쓰기"
-                    tools:ignore="RtlCompat">
-                </TextView>
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginHorizontal="110dp"
+                        android:textAlignment="center"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:text="리뷰"
+                        tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="10dp"
+                        android:textAlignment="viewEnd"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:id="@+id/btn_upload_pic"
+                        android:textStyle="bold"
+                        android:textColor="@color/main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="17dp"
+                        android:text="리뷰 쓰기"
+                        tools:ignore="RtlCompat"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

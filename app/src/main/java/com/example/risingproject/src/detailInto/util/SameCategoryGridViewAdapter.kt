@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.risingproject.R
 import com.example.risingproject.src.detailInto.DetailInfoActivity
 import com.example.risingproject.src.main.home.HomeFragment
@@ -35,6 +36,7 @@ class SameCategoryGridViewAdapter(private var context: Context, val items: List<
         val item = items[p0]
         val inflater : LayoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view : View = inflater.inflate(R.layout.recycler_item_for_big, p2, false)
+        val img_item_big = view.findViewById<ImageView>(R.id.img_item_big)
         val tv_company_name = view.findViewById<TextView>(R.id.tv_company_name_big)
         val tv_item_title = view.findViewById<TextView>(R.id.tv_item_title_big)
         val tv_item_percent = view.findViewById<TextView>(R.id.tv_item_percent_big)
@@ -58,6 +60,10 @@ class SameCategoryGridViewAdapter(private var context: Context, val items: List<
         tv_item_price.text = t_dec_up.format(item.sale)
         tv_item_rate.text = item.reviewRate.toString()
         tv_item_reviews.text = item.numOfReviews.toString()
+
+        Glide.with(context).load(item.itemId)
+            .error(R.drawable.temp_item_1)
+            .into(img_item_big)
 
         if(item.deliveryFee == "N"){
             tv_item_delivery_free.visibility = View.VISIBLE

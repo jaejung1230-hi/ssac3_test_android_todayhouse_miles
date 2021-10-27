@@ -86,7 +86,7 @@ class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(Fragme
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarStoreCategory)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         arr = arrayListOf<ArrayList<Boolean>>()
 
         binding.containerStoreCategory.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)

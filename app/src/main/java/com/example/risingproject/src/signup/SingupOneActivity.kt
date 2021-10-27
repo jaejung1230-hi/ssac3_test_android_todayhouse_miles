@@ -237,8 +237,6 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
     }
 
     override fun onPostSignUpSuccess(response: BaseResponse) {
-        response.message?.let { showCustomToast(it) }
-
         val getSignInRequest = GetSignInRequest(binding.editEmail.text.toString(),
             binding.editPassword.text.toString())
         SignupOneService(this).tryGetSignIn(getSignInRequest)
@@ -259,6 +257,7 @@ class SignupOneActivity : BaseActivity<ActivitySignupOneBinding>(ActivitySignupO
         Log.d("GetSign","성공 여부 : ${response.isSuccess}")
         Log.d("GetSign","메세지 : ${response.message}")
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("new",1)
         startActivity(intent)
         finish()
     }

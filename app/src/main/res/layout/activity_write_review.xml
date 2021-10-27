@@ -14,6 +14,22 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         tools:ignore="MissingConstraints" >
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_menu_x"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_menu_home"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
         <TextView
             android:id="@+id/toolbar_signup_title"
             android:textStyle="bold"
@@ -52,7 +68,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp">
                     <ImageView
-                        android:src="@color/main"
+                        android:src="@drawable/temp_item_1"
                         android:scaleType="fitXY"
                         android:id="@+id/img_selected_item"
                         android:layout_width="match_parent"

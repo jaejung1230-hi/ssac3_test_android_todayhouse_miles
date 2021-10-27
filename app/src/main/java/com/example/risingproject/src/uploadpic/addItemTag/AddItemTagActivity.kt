@@ -42,6 +42,10 @@ class AddItemTagActivity: BaseActivity<ActivityAddItemTagBinding>(ActivityAddIte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         slidePanel = binding.containerAddTag
         slidePanel.isTouchEnabled = false
 

@@ -33,6 +33,9 @@ class HorizontalItemTagAdapter(private val context: Context, private val items: 
 
 
     class ViewHolder(private var binding: RecyclerTagItemsBinding) : RecyclerView.ViewHolder(binding.root){
+        val tempItmePic = listOf<Int>(R.drawable.temp_item_1, R.drawable.temp_item_2, R.drawable.temp_item_3, R.drawable.temp_item_4,
+            R.drawable.temp_item_5, R.drawable.temp_item_6, R.drawable.temp_item_7)
+
         fun bind(context: Context, item: idAndPic){
             binding.containerTag.setOnClickListener {
                 val intent = Intent(context, DetailInfoActivity::class.java)
@@ -41,7 +44,7 @@ class HorizontalItemTagAdapter(private val context: Context, private val items: 
             }
 
             Glide.with(context)
-                .load(item.pic)
+                .load(tempItmePic[position%7])
                 .error(R.drawable.temp_item_1)
                 .into(binding.imgTag)
 

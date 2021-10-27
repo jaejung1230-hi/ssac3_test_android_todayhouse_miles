@@ -159,8 +159,9 @@
 
         <Button
             android:layout_marginBottom="15dp"
-            android:text="인기동영상 더보기"
+            android:text="인기 동영상 더보기"
             android:textColor="#5C5B5B"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:backgroundTint="@color/softGray"
             android:layout_marginHorizontal="10dp"
@@ -217,6 +218,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:textSize="18dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:text="인기사진 더보기"

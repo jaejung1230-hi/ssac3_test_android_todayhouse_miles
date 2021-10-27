@@ -2,6 +2,7 @@ package com.example.risingproject.src.detailStory
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,8 +37,16 @@ class DetailStortActivity : BaseActivity<ActivityDetailStoryBinding>(ActivityDet
     val tempItmePic = listOf<Int>(R.drawable.temp_item_1, R.drawable.temp_item_2, R.drawable.temp_item_3, R.drawable.temp_item_4,
         R.drawable.temp_item_5, R.drawable.temp_item_6, R.drawable.temp_item_7)
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menu_more, menu)
+        return true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         showLoadingDialog(this)
         DetailStoryService(this).tryGetStory(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,0),intent.getIntExtra("storyId",1))
     }
@@ -67,7 +76,7 @@ class DetailStortActivity : BaseActivity<ActivityDetailStoryBinding>(ActivityDet
         for (i in response.result[7].pos){
             listX.add(i.posXs)
             listY.add(i.posYs)
-            //listID.add(idAndPic(i.itemIds.toInt(),i.photoUrl))
+            listID.add(idAndPic(i.itemIds.toInt(),i.photoURL))
 
             val imageView = ImageView(this@DetailStortActivity)
             imageView.setImageResource(R.drawable.ic_item_tag_marker)

@@ -1,5 +1,6 @@
 package com.example.risingproject.src.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.example.risingproject.R
@@ -9,6 +10,7 @@ import com.example.risingproject.databinding.ActivityMainBinding
 import com.example.risingproject.src.main.home.HomeFragment
 import com.example.risingproject.src.main.myPage.MyPageFragment
 import com.example.risingproject.src.main.store.StoreFragemt
+import com.example.risingproject.src.recommendinfo.CustomRecommendInfoActivity
 import com.example.risingproject.util.GlobalFunctions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -16,6 +18,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(intent.getIntExtra("new",-1) == 1){
+            val intent = Intent(this, CustomRecommendInfoActivity::class.java)
+            intent.putExtra("new",1)
+            startActivity(intent)
+        }
 
         supportFragmentManager.beginTransaction().replace(R.id.main_frm, HomeFragment()).commitAllowingStateLoss()
 

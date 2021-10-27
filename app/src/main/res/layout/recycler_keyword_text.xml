@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginBottom="5dp"
     android:background="@drawable/gray_key_word"
     android:paddingHorizontal="5dp"
     android:id="@+id/container_key_word"

@@ -3,7 +3,7 @@ package com.example.risingproject.src.uploadpic.models
 import com.google.gson.annotations.SerializedName
 
 data class UploadPicRequest (
-    @SerializedName("contest") val contest: String,
+    @SerializedName("context") val context: String,
     @SerializedName("photos") val photos: String,
     @SerializedName("area") val area: Int,
     @SerializedName("housingTye") val housingTye: Int,

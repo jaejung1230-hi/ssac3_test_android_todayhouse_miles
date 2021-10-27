@@ -25,7 +25,7 @@
             >
             <LinearLayout
                 android:layout_marginHorizontal="10dp"
-                android:background="@drawable/gray_solied_btn"
+                android:background="@drawable/bg_searck_tv"
                 android:orientation="horizontal"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -41,6 +41,7 @@
                     android:src="@drawable/ic_menu_search"/>
 
                 <EditText
+                    android:textSize="15dp"
                     android:hint="오늘의집 통합검색"
                     android:id="@+id/edit_toolbar_search"
                     android:singleLine="true"

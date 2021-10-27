@@ -17,7 +17,7 @@
         android:theme="?attr/actionBarTheme"
         tools:ignore="MissingConstraints" >
         <LinearLayout
-            android:background="@drawable/gray_solied_btn"
+            android:background="@drawable/bg_searck_tv"
             android:orientation="horizontal"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -36,6 +36,8 @@
             <EditText
                 android:id="@+id/edit_toolbar_search"
                 android:singleLine="true"
+                android:hint="스토어 검색"
+                android:textSize="16dp"
                 android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

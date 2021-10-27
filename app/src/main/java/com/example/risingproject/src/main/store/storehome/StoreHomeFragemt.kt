@@ -132,7 +132,7 @@ class StoreHomeFragemt : BaseFragment<FragmentStoreHomeBinding>(FragmentStoreHom
             binding.recyclerRecord.adapter = StoreHomeRecordAdapter(requireContext(),recordList)
         }
 
-        binding.tvNickname.text = ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1).toString()+"user"
+        binding.tvNickname.text = "김재정"
 
         val recomendLinearLayoutManager = LinearLayoutManager(requireContext())
         recomendLinearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL

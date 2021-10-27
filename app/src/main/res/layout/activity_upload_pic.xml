@@ -156,8 +156,14 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <LinearLayout
+        <View
             android:layout_marginTop="10dp"
+            android:background="@drawable/bottom_boarder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -169,6 +175,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:textSize="13dp"
                 android:inputType="text"
                 android:imeOptions="actionDone"
                 android:background="@null"

@@ -52,7 +52,6 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         binding.tvDetailItemPriceBefore.paintFlags = android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
@@ -70,7 +69,8 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
 
     override fun onStart() {
         super.onStart()
-        intent.getIntExtra("itemId",-1)
+        Log.d("LOGGER_TAG", "freeListener")
+        val aaa = intent.getIntExtra("itemId",-1)
         GlobalFunctions.setRecordPref(intent.getIntExtra("itemId",-1).toString())
         DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",1))
         showLoadingDialog(this)
@@ -82,7 +82,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
 
         binding.btnAllReview.setOnClickListener {
             val intent = Intent(this,AllReviewActivity::class.java)
-            intent.putExtra("itemId",intent.getIntExtra("itemId",-1))
+            intent.putExtra("itemId",aaa)
             startActivity(intent)
         }
     }
