@@ -10,6 +10,7 @@ import com.example.risingproject.databinding.RecyclerItemForTodayBinding
 import com.example.risingproject.src.main.store.storehome.models.ResultItemAll
 import android.os.CountDownTimer
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.example.risingproject.R
 import com.example.risingproject.src.detailInto.DetailInfoActivity
 import java.text.SimpleDateFormat
@@ -77,6 +78,10 @@ class TodaysDealAdapter(private val context: Context, private val items: List<Re
                 intent.putExtra("itemId",item.itemId)
                 context.startActivity(intent)
             }
+
+            Glide.with(context).load(item.mainPic)
+                .error(R.drawable.temp_item_1)
+                .into(binding.imgItemToday)
 
             binding.tvCompanyNameToday.text = item.companyName
             binding.tvItemTitleToday.text = item.itemName

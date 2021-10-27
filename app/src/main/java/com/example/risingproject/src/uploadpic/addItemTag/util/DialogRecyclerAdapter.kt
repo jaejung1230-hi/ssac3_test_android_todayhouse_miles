@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.risingproject.R
 import com.example.risingproject.databinding.RecyclerItemForTagBinding
 import com.example.risingproject.src.uploadpic.addItemTag.SelectTagClick
 import com.example.risingproject.src.uploadpic.addItemTag.models.ResultItem
@@ -25,6 +27,10 @@ class DialogRecyclerAdapter(private val context: Context, private val items: Lis
         fun bind(context: Context, item: ResultItem, selectTagClick: SelectTagClick){
             //binding.imgItemTag
             binding.tvItemTag.text = item.itemName
+
+            Glide.with(context).load(item.mainPhoto)
+                .error(R.drawable.temp_item_1)
+                .into(binding.imgItemTag)
 
             binding.btnItemTag.setOnClickListener {
                 selectTagClick.getSelectedTag(item)

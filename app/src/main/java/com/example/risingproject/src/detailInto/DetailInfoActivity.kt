@@ -7,6 +7,7 @@ import android.util.Log
 import com.example.risingproject.config.BaseActivity
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.risingproject.R
 import com.example.risingproject.databinding.ActivityDetailInfoBinding
 import com.example.risingproject.src.allReview.AllReviewActivity
+import com.example.risingproject.src.cart.CartActivity
 import com.example.risingproject.src.detailInto.buy.BuyBottomDialogFragment
 import com.example.risingproject.src.detailInto.util.*
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemRequest
@@ -37,6 +39,12 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_search_and_basket, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this, CartActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +72,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
         super.onStart()
         intent.getIntExtra("itemId",-1)
         GlobalFunctions.setRecordPref(intent.getIntExtra("itemId",-1).toString())
-        DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",-1))
+        DetailInfoService(this).tryGetItemSearch(intent.getIntExtra("itemId",1))
         showLoadingDialog(this)
 
         binding.btnBuy.setOnClickListener {
@@ -232,7 +240,7 @@ class DetailInfoActivity : BaseActivity<ActivityDetailInfoBinding>(ActivityDetai
             binding.tv1pointCount.text = count1.toString()
             binding.progressBar1point.progress = ((count1.toFloat()/response.result[3].totalReviewNum[0].reviewNum)*100).toInt()
         }
-
+        Log.d("testasdssss",response.result[4].reviewList.toString())
         if(response.result[4].reviewList.size > 3){
             binding.recyclerReviewPic.layoutManager = LinearLayoutManager(this)
             binding.recyclerReviewPic.adapter = ReviewsAdapter(this,response.result[4].reviewList.subList(0,3))

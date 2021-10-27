@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.risingproject.R
 import com.example.risingproject.databinding.RecyclerItemForBigBinding
 import com.example.risingproject.src.detailInto.DetailInfoActivity
@@ -59,6 +60,10 @@ class StoreCategoryCategoryFilterGridViewAdapter(private var context: Context, v
             binding.tvItemPriceBig.text = t_dec_up.format(item.salePrice)
             binding.tvItemRateBig.text = item.reviewRate.toString()
             binding.tvItemReviewsBig.text = item.numOfReviews.toString()
+
+            Glide.with(context).load(item.mainPic)
+                .error(R.drawable.temp_item_1)
+                .into(binding.imgItemBig)
 
             if(item.deliveryFee == "N"){
                 binding.tvItemDeliveryFreeBig.visibility = View.VISIBLE

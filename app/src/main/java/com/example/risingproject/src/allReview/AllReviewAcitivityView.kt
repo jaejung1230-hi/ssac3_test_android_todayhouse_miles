@@ -1,5 +1,6 @@
 package com.example.risingproject.src.allReview
 
+import com.example.risingproject.src.allReview.models.AllReviewResponse
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
@@ -8,7 +9,7 @@ import com.example.risingproject.src.search.storeSearch.models.GetSearchItemResp
 
 interface AllReviewAcitivityView {
 
-    fun onGetAllReviewSuccess(response: Any)
+    fun onGetAllReviewSuccess(response: AllReviewResponse)
 
     fun onGetAllReviewFailure(message: String)
 }

@@ -2,10 +2,13 @@ package com.example.risingproject.src.main.store.storehome.util
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.risingproject.R
 import com.example.risingproject.databinding.RecyclerItemForHorizontalBinding
 import com.example.risingproject.src.detailInto.DetailInfoActivity
 import com.example.risingproject.src.main.store.storehome.models.ResultItemAll
@@ -31,6 +34,13 @@ class StoreHomeRecordAdapter(private val context: Context, private val items: Li
                 intent.putExtra("itemId",item.itemId)
                 context.startActivity(intent)
             }
+
+            Log.d("mainPic",item.mainPic.toString())
+
+            Glide.with(context).load(item.mainPic)
+                .error(R.drawable.temp_item_1)
+                .into(binding.imgItem)
+
             binding.tvCompanyName.text = item.companyName
             binding.tvItemTitle.text = item.itemName
             binding.tvItemPercent.text = item.percenttage.toString()

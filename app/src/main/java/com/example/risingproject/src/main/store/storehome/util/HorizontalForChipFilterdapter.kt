@@ -31,6 +31,8 @@ class HorizontalForChipFilterdapter(private val context: Context, private val it
                 StoreCategoryFragment.FilterBoolean.arr[item.pos1][item.pos2] = !StoreCategoryFragment.FilterBoolean.arr[item.pos1][item.pos2]
                 filterItemClick.getSelectedItem(item.pos1, item.pos2)
             }
+
+
         }
     }
 }

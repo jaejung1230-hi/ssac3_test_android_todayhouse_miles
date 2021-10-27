@@ -9,7 +9,7 @@ data class ResultItem (
     @SerializedName("PlaceType") val PlaceType: String,
     @SerializedName("keywords") val keywords: List<keywords>,
     @SerializedName("photo") val photo: List<photo>,
-    @SerializedName("context") val context:  List<keywords>,
+    @SerializedName("context") val context:  List<context>,
     @SerializedName("pos") val pos: List<pos>
 
     )

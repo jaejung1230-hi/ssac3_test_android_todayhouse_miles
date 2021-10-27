@@ -30,12 +30,6 @@ import androidx.core.view.ViewCompat.canScrollVertically
 import androidx.recyclerview.widget.GridLayoutManager
 import android.widget.Toast
 
-
-
-
-
-
-
 class StoreCategoryFragment :  BaseFragment<FragmentStoreCategoryBinding>(FragmentStoreCategoryBinding::bind, R.layout.fragment_store_category) , StoreCategoryFragmentView, FilterItemClick {
     object FilterBoolean{
         var arr = arrayListOf<ArrayList<Boolean>>()

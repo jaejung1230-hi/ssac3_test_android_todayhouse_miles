@@ -2,6 +2,7 @@ package com.example.risingproject.src.allReview
 
 import android.util.Log
 import com.example.risingproject.config.ApplicationClass
+import com.example.risingproject.src.allReview.models.AllReviewResponse
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import com.example.risingproject.src.main.store.storehome.StoreCategoryRetrofitInterface
 import com.example.risingproject.src.main.store.storehome.StoreHomeRetrofitInterface
@@ -16,13 +17,13 @@ import retrofit2.Response
 class AllReviewService(val view : AllReviewAcitivityView){
     fun tryGetAllReview(userId: Int, itemId: Int){
         val detailInfoRetrofitInterface = ApplicationClass.sRetrofit.create(AllReviewRetrofitInterface::class.java)
-        detailInfoRetrofitInterface.getDetailInfo(userId, itemId).enqueue(object : Callback<Any>{
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                Log.d("test",response.toString())
-                view.onGetAllReviewSuccess(response.body() as Any)
+        detailInfoRetrofitInterface.getDetailInfo(userId, itemId).enqueue(object : Callback<AllReviewResponse>{
+            override fun onResponse(call: Call<AllReviewResponse>, response: Response<AllReviewResponse>) {
+                Log.d("AllReviewActivity",response.toString())
+                view.onGetAllReviewSuccess(response.body() as AllReviewResponse)
             }
 
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+            override fun onFailure(call: Call<AllReviewResponse>, t: Throwable) {
                 view.onGetAllReviewFailure(t.message ?: "통신 오류")
             }
 

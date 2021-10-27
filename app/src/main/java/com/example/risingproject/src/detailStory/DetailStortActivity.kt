@@ -67,7 +67,7 @@ class DetailStortActivity : BaseActivity<ActivityDetailStoryBinding>(ActivityDet
         for (i in response.result[7].pos){
             listX.add(i.posXs)
             listY.add(i.posYs)
-            listID.add(idAndPic(i.itemIds.toInt(),i.photoUrl))
+            //listID.add(idAndPic(i.itemIds.toInt(),i.photoUrl))
 
             val imageView = ImageView(this@DetailStortActivity)
             imageView.setImageResource(R.drawable.ic_item_tag_marker)

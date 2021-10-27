@@ -29,6 +29,7 @@
                 >
 
                 <TextView
+                    android:layout_marginEnd="60dp"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:id="@+id/toolbar_item_title"
@@ -38,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="20dp"
-                    android:text="이름">
+                    android:text="장바구니">
 
                 </TextView>
 
@@ -78,14 +79,25 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/softGray"/>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/softGray"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -109,6 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
                 <TextView
+                    android:id="@+id/tv_price_item"
                     android:textColor="@color/blackForText"
                     android:textStyle="bold"
                     android:textSize="16dp"
@@ -135,6 +148,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
                 <TextView
+                    android:id="@+id/tv_price_dele"
                     android:textColor="@color/blackForText"
                     android:textStyle="bold"
                     android:textSize="16dp"
@@ -161,6 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
                 <TextView
+                    android:id="@+id/tv_price_dis"
                     android:textColor="@color/blackForText"
                     android:textStyle="bold"
                     android:textSize="16dp"
@@ -189,6 +204,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
                 <TextView
+                    android:id="@+id/tv_price_total"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="25dp"

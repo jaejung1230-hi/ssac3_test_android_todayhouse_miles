@@ -1,6 +1,7 @@
-package com.example.risingproject.src.allReview
+package com.example.risingproject.src.cart
 
 import com.example.risingproject.src.allReview.models.AllReviewResponse
+import com.example.risingproject.src.cart.model.CartResponse
 import com.example.risingproject.src.detailInto.models.GetDetailInfoResponse
 import com.example.risingproject.src.main.store.storehome.models.GetAllItemResponse
 import com.example.risingproject.src.main.store.storehome.models.GetCategoryItemResponse
@@ -10,10 +11,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 
-interface AllReviewRetrofitInterface {
-    @GET("/app/reviews/{userId}")
-    fun getDetailInfo(@Path("userId") userId : Int,
-                      @Query("itemId") itemId : Int
-    ) : Call<AllReviewResponse>
+interface CartRetrofitInterface {
+    @GET("/app/{userId}/carts")
+    fun getCart(@Path("userId") userId : Int
+    ) : Call<CartResponse>
 
 }
