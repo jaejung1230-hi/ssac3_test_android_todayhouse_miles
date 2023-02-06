@@ -91,12 +91,13 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
                 val storageRef : StorageReference = storage.reference
                 val riversRef : StorageReference = storageRef.child("$filename.jpg")
                 val uploadTask : UploadTask? = file?.let { it1 -> riversRef.putFile(it1) }
+                Log.d("fileTest",file.toString())
                 val photoUri = "https://firebasestorage.googleapis.com/v0/b/ssac-test-7751b.appspot.com/o/$filename.jpg?alt=media"
                 Log.d("photoUri",photoUri)
                 uploadTask?.addOnSuccessListener {
-                    val writeReviewRequest = WriteReviewRequest(selectedItem!!.itemId!!, photoUri, binding.editComment.text.toString(),
-                        binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt())
-                    WriteReviewService(this).tryPostReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1), writeReviewRequest)
+                    //val writeReviewRequest = WriteReviewRequest(selectedItem!!.itemId!!, photoUri, binding.editComment.text.toString(),
+                        //binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt(),  binding.ratingbarPoint.rating.toInt())
+                    //WriteReviewService(this).tryPostReview(ApplicationClass.sSharedPreferences.getInt(LOG_IN_USER,-1), writeReviewRequest)
                 }
 
             }
@@ -142,8 +143,10 @@ class WirteReviewActivity : BaseActivity<ActivityWriteReviewBinding>(ActivityWri
         if (requestCode == GET_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             img_path = data.data?.let { getImagePathToUri(it) }
             file = data.data!!
+            Log.d("fileTest",img_path.toString())
+            Log.d("fileTest",file.toString())
 
-            val image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.data)
+            val image_bitmap = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
             binding.imgUpload.setImageBitmap(image_bitmap)
         }
     }
